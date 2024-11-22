@@ -18,3 +18,14 @@
 
 ## Regler för pull requests
 - Beskriv vad ändringen gör.
+---------
+
+#TODO
+
+README.md ska innehålla:
+Kort beskrivning av projektet
+Installationsinstruktioner
+Hur man kör programmet
+Eventuella konfigurationsinställningar
+Lista över implementerade patterns
+Kort beskrivning av databasstrukturen
