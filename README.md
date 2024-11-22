@@ -18,4 +18,3 @@
 
 ## Regler för pull requests
 - Beskriv vad ändringen gör.
-- Låt minst en annan medlem granska innan merge.
