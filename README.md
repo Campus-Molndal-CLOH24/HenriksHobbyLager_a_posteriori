@@ -23,9 +23,9 @@
 #TODO
 
 README.md ska innehålla:
-Kort beskrivning av projektet
-Installationsinstruktioner
-Hur man kör programmet
-Eventuella konfigurationsinställningar
-Lista över implementerade patterns
-Kort beskrivning av databasstrukturen
+1. Kort beskrivning av projektet
+2. Installationsinstruktioner
+3. Hur man kör programmet
+4. Eventuella konfigurationsinställningar
+5. Lista över implementerade patterns
+6. Kort beskrivning av databasstrukturen
