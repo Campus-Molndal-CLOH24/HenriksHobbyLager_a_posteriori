@@ -31,34 +31,34 @@ Exempel: docs: uppdaterade README.md
 
 ### Kom igång
 
-1. Klona repositoryt:  
-   ```bash
-	git clone https://github.com/Campus-Molndal-CLOH24/HenriksHobbyLager_a_posteriori.git
+1. Klona repositoryt:
+	```bash
+		git clone https://github.com/Campus-Molndal-CLOH24/HenriksHobbyLager_a_posteriori.git
    
-2. Gå in i projektmappen:  
+3. Gå in i projektmappen:  
 
 		cd HenriksHobbyLager_a_posteriori
-   
-3. Byt till din temp/{name} branch:  
+  
+5. Byt till din temp/{name} branch:  
 
-	   	git checkout temp/{name}
+		git checkout temp/{name}
 
-4. Börja arbeta! Följ instruktionerna nedan när du är redo att committa och pusha.
+6. Börja arbeta! Följ instruktionerna nedan när du är redo att committa och pusha.
 
 ### När du är klar med din temp/{name}
 
 1. Se till att du är i din temp/{name} branch:  
 
-	  	 git checkout temp/{name}
+		git checkout temp/{name}
    
 2. Lägg till och committa dina ändringar:  
 
-	 	git add .
-	  	git commit -m "Ditt commit-meddelande här"
+		git add .
+		git commit -m "Ditt commit-meddelande här"
    
 4. Byt till din dev/{name} branch:  
 
-	   	git checkout dev/{name}
+		git checkout dev/{name}
    
 5. Merge:a ändringarna från temp/{name} till dev/{name}:  
 
@@ -78,14 +78,14 @@ Lägg till en tydlig beskrivning av vad din kod gör och eventuella tester du gj
 ## Vanliga Git-kommandon
 
 - **Hämta senaste ändringarna från remote**:  
-   ```bash
-   	git pull origin main
+	```bash
+ 		git pull origin main
 
 
 Visa status för lokala ändringar:
 
-	git status
+		git status
 
 Visa senaste commits:
 
-	git log --oneline
+		git log --oneline
