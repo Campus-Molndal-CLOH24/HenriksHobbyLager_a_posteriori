@@ -33,7 +33,7 @@ Exempel: docs: uppdaterade README.md
 
 1. Klona repositoryt:
 	```bash
-		git clone https://github.com/Campus-Molndal-CLOH24/HenriksHobbyLager_a_posteriori.git
+	git clone https://github.com/Campus-Molndal-CLOH24/HenriksHobbyLager_a_posteriori.git
    
 3. Gå in i projektmappen:  
 
@@ -78,9 +78,8 @@ Lägg till en tydlig beskrivning av vad din kod gör och eventuella tester du gj
 ## Vanliga Git-kommandon
 
 - **Hämta senaste ändringarna från remote**:  
-	```bash
- 		git pull origin main
 
+		git pull origin main
 
 Visa status för lokala ändringar:
 
