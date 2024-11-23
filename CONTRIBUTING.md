@@ -77,9 +77,9 @@ Lägg till en tydlig beskrivning av vad din kod gör och eventuella tester du gj
 
 ## Vanliga Git-kommandon
 
-- **Hämta senaste ändringarna från remote**:  
+Hämta senaste ändringarna från remote:
 
-		git pull origin main
+		git pull origin "den-branch-du-vill-hämta"
 
 Visa status för lokala ändringar:
 
