@@ -1,5 +1,15 @@
 ## Arbetsflöde
 
+**Regler för commit-meddelanden**
+
+Använd följande format för dina commit-meddelanden:
++ `feat:` för nya funktioner.
++  `fix:` för bugfixar.
++  `refactor:` för omkodning/omstrukturering.
++  `docs:` för ändringar i dokumentation.
+Exempel: docs: uppdaterade README.md
+
+
 ### Branch-struktur
 - **temp/{name}**  
   Börja alltid här. Använd denna branch för att utveckla och testa dina ändringar tills de fungerar som tänkt.  
@@ -23,68 +33,59 @@
 
 1. Klona repositoryt:  
    ```bash
-   git clone https://github.com/Campus-Molndal-CLOH24/HenriksHobbyLager_a_posteriori.git
+	git clone https://github.com/Campus-Molndal-CLOH24/HenriksHobbyLager_a_posteriori.git
+   
+2. Gå in i projektmappen:  
 
-	2.	Gå in i projektmappen:
+		cd HenriksHobbyLager_a_posteriori
+   
+3. Byt till din temp/{name} branch:  
 
-cd HenriksHobbyLager_a_posteriori
+	   	git checkout temp/{name}
 
-	3.	Byt till din temp/{name} branch:
+4. Börja arbeta! Följ instruktionerna nedan när du är redo att committa och pusha.
 
-git checkout temp/{name}
+### När du är klar med din temp/{name}
 
+1. Se till att du är i din temp/{name} branch:  
 
-	4.	Börja arbeta! Följ instruktionerna nedan när du är redo att committa och pusha.
+	  	 git checkout temp/{name}
+   
+2. Lägg till och committa dina ändringar:  
 
-När du är klar med din temp/{name}
+	 	git add .
+	  	git commit -m "Ditt commit-meddelande här"
+   
+4. Byt till din dev/{name} branch:  
 
-	1.	Se till att du är i din temp/{name} branch:
+	   	git checkout dev/{name}
+   
+5. Merge:a ändringarna från temp/{name} till dev/{name}:  
 
-git checkout temp/{name}
+		git merge temp/{name}
 
-	2.	Lägg till och committa dina ändringar:
+6. Pusha din dev/{name} branch till remote:  
 
-git add .
-git commit -m "Ditt commit-meddelande här"
-
-	3.	Byt till din dev/{name} branch:
-
-git checkout dev/{name}
-
-	4.	Merge:a ändringarna från temp/{name} till dev/{name}:
-
-git merge temp/{name}
-
-	5.	Pusha din dev/{name} branch till remote:
-
-git push origin dev/{name}
-
-Regler för commit-meddelanden
-
-Använd följande format för dina commit-meddelanden:
-+ `feat:` för nya funktioner.
-+  `fix:` för bugfixar.
-+  `refactor:` för omkodning/omstrukturering.
-+  `docs:` för ändringar i dokumentation.
-Exempel: docs: uppdaterade README.md
+		git push origin dev/{name}
 
 Pull Requests (PR)
 
-	1.	När du är klar i din dev/{name} branch, skapa en pull request till test.
+1.	När du är klar i din dev/{name} branch, skapa en pull request till test.
 Lägg till en tydlig beskrivning av vad din kod gör och eventuella tester du gjort.
-	2.	Låt minst en annan gruppmedlem granska din pull request innan den merge:as.
-	3.	Merge:a aldrig direkt till test eller main utan en pull request.
+2.	Låt minst en annan gruppmedlem granska din pull request innan den merge:as.
+3.	Merge:a aldrig direkt till test eller main utan en pull request.
 
-Vanliga Git-kommandon
+## Vanliga Git-kommandon
 
-	•	Hämta senaste ändringarna från remote:
+- **Hämta senaste ändringarna från remote**:  
+   ```bash
+   	git pull origin main
 
-git pull origin main
 
-	•	Visa status för lokala ändringar:
+Visa status för lokala ändringar:
 
-git status
+	git status
 
-	•	Visa senaste commits:
+Visa senaste commits:
 
-git log --oneline
+	git log --oneline
