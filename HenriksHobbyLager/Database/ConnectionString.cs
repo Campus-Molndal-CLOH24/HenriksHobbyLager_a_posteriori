@@ -8,7 +8,6 @@ namespace HenriksHobbyLager.Database
 {
     public class ConnectionString
     {
-        public string connectionString = $"Data Source={Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HenriksHobbyLager.db")}"; 
-
+        public string connectionString = $"Data Source={Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HenriksHobbyLager.db")}";
     }
 }

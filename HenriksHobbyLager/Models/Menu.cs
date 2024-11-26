@@ -12,12 +12,6 @@ namespace HenriksHobbyLager.Models
 {
     internal class Menu
     {
-        public readonly SQLiteRepo<Product> products;
-
-        public Menu()
-        {
-            products = new SQLiteRepo<Product>("Products");
-        }
 
         public void MainMenu()
         {
@@ -64,76 +58,32 @@ namespace HenriksHobbyLager.Models
                 Console.ReadKey();
             }
         }
-        private void AddProduct()
+
+        private void SearchProducts()
         {
-            var product = new Product();
-            Console.Write("Namn: ");
-            product.Name = Console.ReadLine();
-            Console.Write("Pris: ");
-            product.Price = decimal.Parse(Console.ReadLine());
-            Console.Write("Lagersaldo: ");
-            product.Stock = int.Parse(Console.ReadLine());
-            Console.Write("Kategori: ");
-            product.Category = Console.ReadLine();
-
-            products.Add(product);
-            Console.WriteLine("Produkten lades till!");
-        }
-
-
-
-        private void ShowAllProducts()
-        {
-            var allProducts = products.GetAll();
-            foreach (var product in allProducts)
-            {
-                Console.WriteLine($"ID: {product.Id}, Name: {product.Name}, Price: {product.Price}, Stock: {product.Stock}, Category: {product.Category}");
-            }
-        }
-
-        private void UpdateProduct()
-        {
-            Console.Write("Skriv in produktens ID: ");
-            var id = int.Parse(Console.ReadLine());
-            var product = products.GetById(id);
-            if (product != null)
-            {
-                Console.Write("Namn: ");
-                product.Name = Console.ReadLine();
-                Console.Write("Pris: ");
-                product.Price = decimal.Parse(Console.ReadLine());
-                Console.Write("Lagersaldo: ");
-                product.Stock = int.Parse(Console.ReadLine());
-                Console.Write("Kategori: ");
-                product.Category = Console.ReadLine();
-
-                products.Update(product);
-                Console.WriteLine("Produkten uppdaterades!");
-            }
-            else
-            {
-                Console.WriteLine("Produkten hittades inte. :(");
-            }
+            throw new NotImplementedException();
         }
 
         private void DeleteProduct()
         {
-            Console.Write("Skriv in produktens ID: ");
-            var id = int.Parse(Console.ReadLine());
-            products.Delete(id);
-            Console.WriteLine("Produkten raderades från databasen!");
+            throw new NotImplementedException();
         }
 
-        private void SearchProducts()
+        private void UpdateProduct()
         {
-            Console.Write("Skriv in sökterm: ");
-            var searchTerm = Console.ReadLine();
-            var searchProducts = products.Search(p => p.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                                                    p.Category.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
-            foreach (var product in searchProducts)
-            {
-                Console.WriteLine($"ID: {product.Id}, Name: {product.Name}, Price: {product.Price}, Stock: {product.Stock}, Category: {product.Category}");
-            }
+            throw new NotImplementedException();
+        }
+
+        private void AddProduct()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowAllProducts()
+        {
+            throw new NotImplementedException();
         }
     }
 }
+
+       

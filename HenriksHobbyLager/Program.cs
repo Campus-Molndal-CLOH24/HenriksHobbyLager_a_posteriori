@@ -34,6 +34,8 @@ var anka = new Product
     PS. Om någon hittar det här i framtiden: Jag vet att koden kunde varit snyggare, 
     men den fungerar! Och det är huvudsaken... right?
 */
+using HenriksHobbyLager.Interfaces;
+using HenriksHobbyLager.Models;
 using HenriksHobbyLager.Database;
 using System;
 using System.Collections.Generic;
@@ -44,13 +46,17 @@ using System.Linq;
 
 namespace RefactoringExercise
 { 
-        public class Program
+    public class Program
+    {
+        public static void Main(string[] args)
         {
-            public static void Main(string[] args)
-            {
+            var createDatabase = new ConnectToDatabase();
+            createDatabase.connectToDatabase();
+            var createTable = new DatabaseQuery();
+            createTable.CreateTable();
 
-            }
+            var menu = new Menu();
+           // menu.MainMenu();
         }
-    
-
+    }
 } 
