@@ -34,9 +34,12 @@ var anka = new Product
     PS. Om någon hittar det här i framtiden: Jag vet att koden kunde varit snyggare, 
     men den fungerar! Och det är huvudsaken... right?
 */
+using HenriksHobbyLager_a_posteriori.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 
 namespace RefactoringExercise
 {
@@ -64,17 +67,7 @@ namespace RefactoringExercise
     }
 
     // Min fina produktklass! 
-    // Lade till Created och LastUpdated för att det såg proffsigt ut
-    public class Product
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Stock { get; set; }
-        public string Category { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime? LastUpdated { get; set; }  // Frågetecknet är för att jag är osäker på datumet
-    }
+   
 
     class Program
     {
