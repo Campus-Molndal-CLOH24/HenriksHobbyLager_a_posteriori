@@ -34,14 +34,19 @@ var anka = new Product
     PS. Om någon hittar det här i framtiden: Jag vet att koden kunde varit snyggare, 
     men den fungerar! Och det är huvudsaken... right?
 */
+using HenriksHobbyLager.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+
+
 
 namespace RefactoringExercise
 {
     static void Main(string[] args)
     {
+    
 
     }
 

@@ -10,7 +10,7 @@ namespace HenriksHobbyLager.Models
     internal class DisplayProducts
     {
         // Visar en enskild produkt snyggt formaterat
-        private static void DisplayProduct(Product product)
+        public static void DisplayProduct(Product product)
         {
             // Snygga streck som separerar produkterna
             Console.WriteLine($"\nID: {product.Id}");
@@ -24,4 +24,5 @@ namespace HenriksHobbyLager.Models
             Console.WriteLine(new string('-', 40));  // Snyggt streck mellan produkterna
         }
     }
+    
 }
