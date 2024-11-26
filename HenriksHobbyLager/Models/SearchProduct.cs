@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HenriksHobbyLager.Models
 {
-    internal class SearchProducts
+    internal class SearchProduct
     {
     }
 }
