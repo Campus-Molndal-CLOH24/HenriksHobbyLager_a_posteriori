@@ -1,4 +1,6 @@
-﻿using HenriksHobbyLager.Database;
+﻿using HenriksHobbyLager.Interfaces;
+using HenriksHobbyLager.Database;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +14,26 @@ namespace HenriksHobbyLager.Models
         // Sökfunktion - Min stolthet! Söker i både namn och kategori
         private static void SearchProducts()
         {
-            Console.Write("Sök (namn eller kategori - versaler spelar ingen roll!): ");
-            var searchTerm = Console.ReadLine().ToLower();
-
-            // LINQ igen! Kollar både namn och kategori
-            var results = _products.Where(p =>
-                p.Name.ToLower().Contains(searchTerm) ||
-                p.Category.ToLower().Contains(searchTerm)
-            ).ToList();
-
-            if (!results.Any())
+            public IEnumerable<T> GetAll()
             {
-                Console.WriteLine("Inga produkter matchade sökningen. Prova med något annat!");
-                return;
-            }
+                var results = new List<T>();
 
-            foreach (var product in results)
-            {
-                DisplayProduct(product);
+                using (var connection = new SqliteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    var query = $"SELECT * FROM {_tableName};";
+                    using (var command = new SQLiteCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            results.Add(MapReaderToEntity(reader));
+                        }
+                    }
+                }
+
+                return results;
             }
         }
     }

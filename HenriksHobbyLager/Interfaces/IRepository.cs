@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace HenriksHobbyLager.Interfaces
 {
-    internal class Repository
-    {
         public interface IRepository<T>
         {
             IEnumerable<T> GetAll();
@@ -18,5 +16,5 @@ namespace HenriksHobbyLager.Interfaces
             void Delete(int id);
             IEnumerable<T> Search(Func<T, bool> predicate);
         }
-    }
+    
 }
