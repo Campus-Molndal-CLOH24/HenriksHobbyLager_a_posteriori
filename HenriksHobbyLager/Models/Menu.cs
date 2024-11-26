@@ -68,8 +68,7 @@ namespace HenriksHobbyLager.Models
         }
         private void AddProduct()
         {
-            CreateEntry.CreateProduct();
-            
+            CreateEntry.CreateProduct();    
         }
 
         private void DeleteProduct()
@@ -86,7 +85,7 @@ namespace HenriksHobbyLager.Models
 
         private void ShowAllProducts()
         {
-            throw new NotImplementedException();
+            SearchAllProducts.SearchAll();
         }
     }
 }
