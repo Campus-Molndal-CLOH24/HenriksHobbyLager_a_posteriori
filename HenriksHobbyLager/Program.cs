@@ -43,11 +43,14 @@ using System.Linq;
 
 
 namespace RefactoringExercise
-{
-    static void Main(string[] args)
-    {
-    
+{ 
+        public class Program
+        {
+            public static void Main(string[] args)
+            {
 
-    }
+            }
+        }
+    
 
 } 
