@@ -15,6 +15,7 @@ namespace HenriksHobbyLager.Database
             {
                 connection.Open();
                 Console.WriteLine("Uppkopplad till Henriks databas!");
+                Console.WriteLine(connectionString);
                 
             }
         }

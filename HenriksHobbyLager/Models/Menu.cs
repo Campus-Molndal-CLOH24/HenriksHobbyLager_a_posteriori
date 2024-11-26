@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 
 namespace HenriksHobbyLager.Models
@@ -63,6 +66,11 @@ namespace HenriksHobbyLager.Models
         {
             throw new NotImplementedException();
         }
+        private void AddProduct()
+        {
+            CreateEntry.CreateProduct();
+            
+        }
 
         private void DeleteProduct()
         {
@@ -74,10 +82,7 @@ namespace HenriksHobbyLager.Models
             throw new NotImplementedException();
         }
 
-        private void AddProduct()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         private void ShowAllProducts()
         {

@@ -56,7 +56,9 @@ namespace RefactoringExercise
             createTable.CreateTable();
 
             var menu = new Menu();
-           // menu.MainMenu();
+            menu.MainMenu();
+
+            
         }
     }
 } 
