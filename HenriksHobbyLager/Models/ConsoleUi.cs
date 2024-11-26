@@ -16,6 +16,8 @@ namespace RefactoringExercise.Models
             bool running = true; 
             while (running)
             {
+
+                
                 Console.Clear();
                 Console.WriteLine("=== Henriks Hobby Lager ===");
                 Console.WriteLine("1. Visa alla produkter");
@@ -90,6 +92,7 @@ namespace RefactoringExercise.Models
                 Console.WriteLine("Ogiltig lagermängd! Hela tal endast (kan inte sälja halva helikoptrar)");
                 return;
             }
+            
             Console.Write("Kategori: ");
             var category = Console.ReadLine();
 

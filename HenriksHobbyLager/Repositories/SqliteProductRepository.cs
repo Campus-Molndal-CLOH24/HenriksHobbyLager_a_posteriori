@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 using RefactoringExercise.Interfaces;
 using RefactoringExercise.Models;
 
 namespace RefactoringExercise.Repositories
 {
-    public class SqliteRepositories : IRepository<Product>
+    public class SqliteProductRepository : IRepository<Product>
     {
         private readonly string _connectionString = "Data Source=products.db";
 
