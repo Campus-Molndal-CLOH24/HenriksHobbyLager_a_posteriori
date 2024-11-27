@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace HenriksHobbyLager_a_posteriori.Models;
 
 
-    public class Product
+    public class Product // Beskriver produkter 
     {
         public int Id { get; set; }
         public string Name { get; set; }
