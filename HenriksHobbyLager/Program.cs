@@ -37,65 +37,22 @@ var anka = new Product
 
 using HenriksHobbyLager.Repositories;
 using HenriksHobbyLager.Services;
-using System;
+using HenriksHobbyLager;
+using HenriksHobbyLager.Helpers;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        var repository = new ProductRepository(); // Repository för att hantera data
-        var service = new ProductService(repository); // Service för att hantera logik
+        var repository = new ProductRepository(); // Hanterar data
+        var productService = new ProductService(repository); // Hanterar logik
+        var menuHandler = new MenuHandler(productService); // Hanterar menyval
 
         while (true)
         {
-            ShowMenu(); // Visa menyval för användaren
-            var choice = Console.ReadLine(); // Läs användarens val
-
-            HandleMenuChoice(choice, service); // Hantera valet med hjälp av service
+            menuHandler.ShowMenu(); // Visa menyn
+            var choice = ConsoleHelper.ReadInput("Välj ett alternativ"); // Läs in val
+            menuHandler.HandleMenuChoice(choice); // Hantera valet
         }
-    }
-
-    // Visar huvudmenyn
-    private static void ShowMenu()
-    {
-        Console.Clear();
-        Console.WriteLine("=== Henriks HobbyLager™ ===");
-        Console.WriteLine("1. Visa alla produkter");
-        Console.WriteLine("2. Lägg till produkt");
-        Console.WriteLine("3. Uppdatera produkt");
-        Console.WriteLine("4. Ta bort produkt");
-        Console.WriteLine("5. Avsluta");
-        Console.Write("Välj ett alternativ: ");
-    }
-
-    // Hanterar menyval
-    private static void HandleMenuChoice(string choice, ProductService service)
-    {
-        switch (choice)
-        {
-            case "1":
-                service.ShowAllProducts();
-                break;
-            case "2":
-                service.AddProduct();
-                break;
-            case "3":
-                service.UpdateProduct();
-                break;
-            case "4":
-                service.DeleteProduct();
-                break;
-            case "5":
-                Console.WriteLine("Avslutar programmet...");
-                Environment.Exit(0); // Avslutar programmet
-                break;
-            default:
-                Console.WriteLine("Ogiltigt val, försök igen.");
-                break;
-        }
-
-        Console.WriteLine("\nTryck på valfri tangent för att fortsätta...");
-        Console.ReadKey();
     }
 }
-
