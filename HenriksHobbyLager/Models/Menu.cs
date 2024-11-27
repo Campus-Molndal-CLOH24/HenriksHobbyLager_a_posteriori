@@ -45,7 +45,7 @@ namespace HenriksHobbyLager.Models
                         UpdateProduct();
                         break;
                     case "4":
-                        DeleteProduct();
+                        DeleteAProduct();
                         break;
                     case "5":
                         SearchProducts();
@@ -62,18 +62,17 @@ namespace HenriksHobbyLager.Models
             }
         }
 
-        private void SearchProducts()
+        private void ShowAllProducts()
         {
-            SpecificSearcher.SearchSpecificProduct();
+            SearchAllProducts.SearchAll();
         }
         private void AddProduct()
         {
-            CreateEntry.CreateProduct();    
+            CreateEntry.CreateProduct();
         }
-
-        private void DeleteProduct()
+        private void DeleteAProduct()
         {
-            throw new NotImplementedException();
+            DeleteProduct.DeleteOneProduct();
         }
 
         private void UpdateProduct()
@@ -81,12 +80,15 @@ namespace HenriksHobbyLager.Models
             throw new NotImplementedException();
         }
 
+        private void SearchProducts()
+        {
+            SpecificSearcher.SearchSpecificProduct();
+        }
        
 
-        private void ShowAllProducts()
-        {
-            SearchAllProducts.SearchAll();
-        }
+
+
+        
     }
 }
 
