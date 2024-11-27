@@ -64,7 +64,7 @@ namespace HenriksHobbyLager.Models
 
         private void SearchProducts()
         {
-            throw new NotImplementedException();
+            SpecificSearcher.SearchSpecificProduct();
         }
         private void AddProduct()
         {
