@@ -1,0 +1,178 @@
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex f1c60a4..32ae13b 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -4,4 +4,3 @@[m
+ [m
+ /.vs/HenriksHobbyLager[m
+ /HenriksHobbyLager/obj/Debug/net8.0[m
+[31m-abcmons/[m
+\ No newline at end of file[m
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/CopilotIndices/17.12.31.40377/CodeChunks.db b/.vs/HenriksHobbyLager_a_posteriori/CopilotIndices/17.12.31.40377/CodeChunks.db[m
+[1mdeleted file mode 100644[m
+[1mindex aa5d6e1..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/CopilotIndices/17.12.31.40377/CodeChunks.db and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/CopilotIndices/17.12.31.40377/SemanticSymbols.db b/.vs/HenriksHobbyLager_a_posteriori/CopilotIndices/17.12.31.40377/SemanticSymbols.db[m
+[1mdeleted file mode 100644[m
+[1mindex 527188c..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/CopilotIndices/17.12.31.40377/SemanticSymbols.db and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/327af0b0-6450-44c4-b0ce-ccb4cd9bb293.vsidx b/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/327af0b0-6450-44c4-b0ce-ccb4cd9bb293.vsidx[m
+[1mdeleted file mode 100644[m
+[1mindex b43f8c4..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/327af0b0-6450-44c4-b0ce-ccb4cd9bb293.vsidx and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/3c7a75a8-6d8a-420c-ac67-bd900df8e008.vsidx b/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/3c7a75a8-6d8a-420c-ac67-bd900df8e008.vsidx[m
+[1mdeleted file mode 100644[m
+[1mindex 70aef67..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/3c7a75a8-6d8a-420c-ac67-bd900df8e008.vsidx and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/4e2470e7-b301-4918-88a7-60e6f4ba2213.vsidx b/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/4e2470e7-b301-4918-88a7-60e6f4ba2213.vsidx[m
+[1mdeleted file mode 100644[m
+[1mindex 14ee407..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/4e2470e7-b301-4918-88a7-60e6f4ba2213.vsidx and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/5e2228be-c9aa-4a5c-9f58-d7aa75001c41.vsidx b/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/5e2228be-c9aa-4a5c-9f58-d7aa75001c41.vsidx[m
+[1mdeleted file mode 100644[m
+[1mindex 1d84d16..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/5e2228be-c9aa-4a5c-9f58-d7aa75001c41.vsidx and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/c7040467-017c-4f6f-aa87-fcb7b65a1519.vsidx b/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/c7040467-017c-4f6f-aa87-fcb7b65a1519.vsidx[m
+[1mdeleted file mode 100644[m
+[1mindex d193fa2..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/FileContentIndex/c7040467-017c-4f6f-aa87-fcb7b65a1519.vsidx and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/v17/.wsuo b/.vs/HenriksHobbyLager_a_posteriori/v17/.wsuo[m
+[1mdeleted file mode 100644[m
+[1mindex 677c6b4..0000000[m
+Binary files a/.vs/HenriksHobbyLager_a_posteriori/v17/.wsuo and /dev/null differ
+[1mdiff --git a/.vs/HenriksHobbyLager_a_posteriori/v17/DocumentLayout.json b/.vs/HenriksHobbyLager_a_posteriori/v17/DocumentLayout.json[m
+[1mdeleted file mode 100644[m
+[1mindex 210ac98..0000000[m
+[1m--- a/.vs/HenriksHobbyLager_a_posteriori/v17/DocumentLayout.json[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-{[m
+[31m-  "Version": 1,[m
+[31m-  "WorkspaceRootPath": "C:\\Users\\Muhammad Aamir\\source\\repos\\HenriksHobbyLager_a_posteriori\\",[m
+[31m-  "Documents": [],[m
+[31m-  "DocumentGroupContainers": [[m
+[31m-    {[m
+[31m-      "Orientation": 0,[m
+[31m-      "VerticalTabListWidth": 256,[m
+[31m-      "DocumentGroups": [][m
+[31m-    }[m
+[31m-  ][m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/.vs/ProjectEvaluation/henrikshobbylager.metadata.v9.bin b/.vs/ProjectEvaluation/henrikshobbylager.metadata.v9.bin[m
+[1mindex ae0d308..adc782a 100644[m
+Binary files a/.vs/ProjectEvaluation/henrikshobbylager.metadata.v9.bin and b/.vs/ProjectEvaluation/henrikshobbylager.metadata.v9.bin differ
+[1mdiff --git a/.vs/ProjectEvaluation/henrikshobbylager.projects.v9.bin b/.vs/ProjectEvaluation/henrikshobbylager.projects.v9.bin[m
+[1mindex 2a1f5b1..29ec607 100644[m
+Binary files a/.vs/ProjectEvaluation/henrikshobbylager.projects.v9.bin and b/.vs/ProjectEvaluation/henrikshobbylager.projects.v9.bin differ
+[1mdiff --git a/.vs/ProjectEvaluation/henrikshobbylager.strings.v9.bin b/.vs/ProjectEvaluation/henrikshobbylager.strings.v9.bin[m
+[1mindex 185415b..c8f21fa 100644[m
+Binary files a/.vs/ProjectEvaluation/henrikshobbylager.strings.v9.bin and b/.vs/ProjectEvaluation/henrikshobbylager.strings.v9.bin differ
+[1mdiff --git a/.vs/VSWorkspaceState.json b/.vs/VSWorkspaceState.json[m
+[1mdeleted file mode 100644[m
+[1mindex 339a3a3..0000000[m
+[1m--- a/.vs/VSWorkspaceState.json[m
+[1m+++ /dev/null[m
+[36m@@ -1,8 +0,0 @@[m
+[31m-{[m
+[31m-  "ExpandedNodes": [[m
+[31m-    "",[m
+[31m-    "\\abcmons"[m
+[31m-  ],[m
+[31m-  "SelectedNode": "\\abcmons",[m
+[31m-  "PreviewInSolutionExplorer": false[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/.vs/slnx.sqlite b/.vs/slnx.sqlite[m
+[1mdeleted file mode 100644[m
+[1mindex 7f19f8d..0000000[m
+Binary files a/.vs/slnx.sqlite and /dev/null differ
+[1mdiff --git a/HenriksHobbyLager/Database/dummy.md b/HenriksHobbyLager/Database/dummy.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a760ba0[m
+[1m--- /dev/null[m
+[1m+++ b/HenriksHobbyLager/Database/dummy.md[m
+[36m@@ -0,0 +1,5 @@[m
+[32m+[m[32m﻿# Dummy[m
+[32m+[m
+[32m+[m[32mRadera denna fil om du vill.[m
+[32m+[m
+[32m+[m[32mDen finns bara för att Git ska ta med mappen.[m
+[1mdiff --git a/HenriksHobbyLager/HenriksHobbyLager.csproj b/HenriksHobbyLager/HenriksHobbyLager.csproj[m
+[1mindex 601c3c6..b824707 100644[m
+[1m--- a/HenriksHobbyLager/HenriksHobbyLager.csproj[m
+[1m+++ b/HenriksHobbyLager/HenriksHobbyLager.csproj[m
+[36m@@ -9,9 +9,9 @@[m
+   </PropertyGroup>[m
+ [m
+   <ItemGroup>[m
+[31m-    <Folder Include="Database\" />[m
+[31m-    <Folder Include="Interfaces\" />[m
+[31m-    <Folder Include="Models\" />[m
+[32m+[m[32m    <Compile Include="Database\dummy.md" />[m
+[32m+[m[32m    <Compile Include="Interfaces\dummy.md" />[m
+[32m+[m[32m    <Compile Include="Models\dummy.md" />[m
+   </ItemGroup>[m
+ [m
+ </Project>[m
+[1mdiff --git a/HenriksHobbyLager/Interfaces/dummy.md b/HenriksHobbyLager/Interfaces/dummy.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a760ba0[m
+[1m--- /dev/null[m
+[1m+++ b/HenriksHobbyLager/Interfaces/dummy.md[m
+[36m@@ -0,0 +1,5 @@[m
+[32m+[m[32m﻿# Dummy[m
+[32m+[m
+[32m+[m[32mRadera denna fil om du vill.[m
+[32m+[m
+[32m+[m[32mDen finns bara för att Git ska ta med mappen.[m
+[1mdiff --git a/HenriksHobbyLager/Models/dummy.md b/HenriksHobbyLager/Models/dummy.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a760ba0[m
+[1m--- /dev/null[m
+[1m+++ b/HenriksHobbyLager/Models/dummy.md[m
+[36m@@ -0,0 +1,5 @@[m
+[32m+[m[32m﻿# Dummy[m
+[32m+[m
+[32m+[m[32mRadera denna fil om du vill.[m
+[32m+[m
+[32m+[m[32mDen finns bara för att Git ska ta med mappen.[m
+[1mdiff --git a/HenriksHobbyLager/Reports/Readme.md b/HenriksHobbyLager/Reports/Readme.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e9bec98[m
+[1m--- /dev/null[m
+[1m+++ b/HenriksHobbyLager/Reports/Readme.md[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32mI have made changes before merging[m
+\ No newline at end of file[m
+[1mdiff --git a/vs files moved here/CopilotIndices/17.12.31.40377/CodeChunks.db b/vs files moved here/CopilotIndices/17.12.31.40377/CodeChunks.db[m
+[1mdeleted file mode 100644[m
+[1mindex 3bb07bb..0000000[m
+Binary files a/vs files moved here/CopilotIndices/17.12.31.40377/CodeChunks.db and /dev/null differ
+[1mdiff --git a/vs files moved here/CopilotIndices/17.12.31.40377/SemanticSymbols.db b/vs files moved here/CopilotIndices/17.12.31.40377/SemanticSymbols.db[m
+[1mdeleted file mode 100644[m
+[1mindex 8363830..0000000[m
+Binary files a/vs files moved here/CopilotIndices/17.12.31.40377/SemanticSymbols.db and /dev/null differ
+[1mdiff --git a/vs files moved here/v17/.wsuo b/vs files moved here/v17/.wsuo[m
+[1mdeleted file mode 100644[m
+[1mindex 65b30e2..0000000[m
+Binary files a/vs files moved here/v17/.wsuo and /dev/null differ
+[1mdiff --git a/vs files moved here/v17/DocumentLayout.json b/vs files moved here/v17/DocumentLayout.json[m
+[1mdeleted file mode 100644[m
+[1mindex 210ac98..0000000[m
+[1m--- a/vs files moved here/v17/DocumentLayout.json[m	
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-{[m
+[31m-  "Version": 1,[m
+[31m-  "WorkspaceRootPath": "C:\\Users\\Muhammad Aamir\\source\\repos\\HenriksHobbyLager_a_posteriori\\",[m
+[31m-  "Documents": [],[m
+[31m-  "DocumentGroupContainers": [[m
+[31m-    {[m
+[31m-      "Orientation": 0,[m
+[31m-      "VerticalTabListWidth": 256,[m
+[31m-      "DocumentGroups": [][m
+[31m-    }[m
+[31m-  ][m
+[31m-}[m
+\ No newline at end of file[m
