@@ -5,7 +5,7 @@ using System;
 
 namespace HenriksHobbyLager.Services
 {
-    public class ProductService
+    public class ProductService // Kontrollerar lagersaldo mot databasen m.m. 
     {
         private readonly ProductRepository _repository;
 
