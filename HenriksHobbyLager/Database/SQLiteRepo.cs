@@ -2,6 +2,7 @@
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -98,6 +99,7 @@ namespace HenriksHobbyLager.Database
                 command.ExecuteNonQuery();
             }
         }
+
         public void Delete(int id)
         {
             using (var connection = new SqliteConnection(connectionString))

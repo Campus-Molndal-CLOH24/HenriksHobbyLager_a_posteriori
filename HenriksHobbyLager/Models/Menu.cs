@@ -77,7 +77,7 @@ namespace HenriksHobbyLager.Models
 
         private void UpdateProduct()
         {
-            throw new NotImplementedException();
+            ProductUpdater.UpdateOneProduct();
         }
 
         private void SearchProducts()
