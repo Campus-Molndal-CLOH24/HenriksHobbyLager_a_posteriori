@@ -4,7 +4,7 @@ using System;
 
 namespace HenriksHobbyLager
 {
-    public class MenuHandler
+    public class MenuHandler // Hanterar ShowMenu och HandleMenuChoice istället för att ha dem i Main. 
     {
         private readonly ProductService _service;
 
