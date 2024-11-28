@@ -1,12 +1,13 @@
-using RefactoringExercise.Models;
-using RefactoringExercise.Interfaces;
+using HenriksHobbyLager.Interfaces;
+using HenriksHobbyLager.Models;
 
-namespace RefactoringExercise.Database
+namespace HenriksHobbyLager.Repositories
 {
     // implementerar IRepository<T> för att hantera lagring av Product-objekt
     public class ProductRepository : IRepository<Product>
     {
         // Min fantastiska databas! Fungerar perfekt så länge datorn är igång
+        // UPDATE: Nu lagrar den i minnet istället för på hårddisken
         private readonly List<Product> _products = new();
         
         // Räknare för ID. Börjar på 1 för att 0 känns så negativt
@@ -19,7 +20,7 @@ namespace RefactoringExercise.Database
         public Product GetById(int id) => _products.FirstOrDefault(p => p.Id == id);
 
         // lägger till en ny produkt i lagret
-        public void Add(Product product)
+        public void AddProduct(Product product)
         {
             // tilldelar ett nytt ID och lägger till produkten i listan
             product.Id = _nextId++;
@@ -27,7 +28,7 @@ namespace RefactoringExercise.Database
         }
 
         // uppdaterar en befintlig produkt i lagret
-        public void Update(Product product)
+        public void UpdateProduct(Product product)
         {
             // hitta produkten som ska uppdateras
             var existingProduct = GetById(product.Id);

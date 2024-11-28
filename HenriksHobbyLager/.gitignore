@@ -611,5 +611,8 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,visualstudiocode,visualstudio,vim,notepadpp,rider,jetbrains+all
 
+!/bin/Debug/net9.0/appsettings.json
+!/bin/Debug/net9.0/products.db

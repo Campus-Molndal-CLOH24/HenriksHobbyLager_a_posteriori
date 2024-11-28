@@ -1,6 +1,6 @@
-using RefactoringExercise.Models;
+using HenriksHobbyLager.Models;
 
-namespace RefactoringExercise.Interfaces
+namespace HenriksHobbyLager.Interfaces
 {
     // produktfacaden som hanterar affärslogiken för produkter
     public interface IProductFacade
