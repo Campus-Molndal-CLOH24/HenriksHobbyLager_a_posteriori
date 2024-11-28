@@ -616,3 +616,4 @@ FodyWeavers.xsd
 
 !/bin/Debug/net9.0/appsettings.json
 !/bin/Debug/net9.0/products.db
+.DS_Store
