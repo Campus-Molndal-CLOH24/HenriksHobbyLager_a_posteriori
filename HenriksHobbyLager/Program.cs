@@ -34,12 +34,24 @@ var anka = new Product
     PS. Om någon hittar det här i framtiden: Jag vet att koden kunde varit snyggare, 
     men den fungerar! Och det är huvudsaken... right?
 */
+
+/*
+ * TODO-lista: 
+ * Fixa funktionalitet för att koppla upp sig mot en mongoDB databas på molnet
+ * Fixa CRUD för mongoDB databasen
+ * Lägga in funktion för att kunna välja mellan mongoDB eller sql
+ * Fixa sökfunktion så att man kan söka på kategori också
+ * Kontrollera felinmatning
+ * Fixa delete-funktionen, man måste lägga in ID och Namn för att kunna ta bort från DB.
+ * 
+*/
 using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
 using HenriksHobbyLager.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HenriksHobbyLager.Utilities;
 
 
 
@@ -50,15 +62,23 @@ namespace RefactoringExercise
     {
         public static void Main(string[] args)
         {
-            var createDatabase = new ConnectToDatabase();
-            createDatabase.connectToDatabase();
-            var createTable = new DatabaseQuery();
-            createTable.CreateTable();
+            // Läser config.txt
+            var (dbType, connectionString) = ConfigReader.ReadConfig("config.txt");
 
-            var menu = new Menu();
+            //Skapar databasen som är vald
+            IDatabase database = DatabaseFactory.CreateDatabase(dbType);
+
+            //Ansluter till databasen
+            database.Connect(connectionString);
+
+            //Skapar en tabell om så behövs
+            database.CreateTable();
+
+            //Kör huvudmenyn
+
+            var menu = new Menu(database);
             menu.MainMenu();
 
-            
         }
     }
 } 

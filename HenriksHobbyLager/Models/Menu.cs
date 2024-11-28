@@ -15,6 +15,12 @@ namespace HenriksHobbyLager.Models
 {
     internal class Menu
     {
+        private readonly IDatabase _database;
+
+        public Menu(IDatabase database)
+        {
+            _database = database;
+        }
 
         public void MainMenu()
         {

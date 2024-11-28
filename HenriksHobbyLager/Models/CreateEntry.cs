@@ -41,7 +41,7 @@ namespace HenriksHobbyLager.Models
                 {
                     command.Connection = connection;
                     command.CommandText = "INSERT INTO Products (Name, Price, Stock, Category) VALUES (@Name, @Price, @Stock, @Category);";
-                    
+
 
                     command.Parameters.AddWithValue("@Name", Name);
                     command.Parameters.AddWithValue("@Price", Price);
@@ -52,7 +52,5 @@ namespace HenriksHobbyLager.Models
                 }
             }
         }
-    
-       
     }
 }

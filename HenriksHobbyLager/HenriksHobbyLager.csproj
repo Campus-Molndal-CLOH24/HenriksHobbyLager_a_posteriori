@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.data.sqlite" Version="9.0.0" />
+    <PackageReference Include="mongodb.driver" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
