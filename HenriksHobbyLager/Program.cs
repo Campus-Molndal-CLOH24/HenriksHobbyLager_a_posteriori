@@ -1,59 +1,37 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.IO;
-using HenriksHobbyLager.Database;
+﻿using HenriksHobbyLager.Database;
 using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
-using HenriksHobbyLager.Repositories;
+using Microsoft.Extensions.Configuration;
 
-namespace RefactoringExercise
+namespace HenriksHobbyLager
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Build configuration
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .Build();
+            var configuration = BuildConfig.BuildConfiguration();
 
-            // Get database settings from configuration
-            IRepository<Product> repository;
             DatabaseType dbType;
+            IRepository<Product> repository;
 
-            if (Enum.TryParse(configuration["DatabaseSettings:DatabaseType"], out dbType))
+            if (!Enum.TryParse(configuration["DatabaseSettings:DatabaseType"], out dbType))
             {
-                switch (dbType)
-                {
-                    case DatabaseType.SQLite:
-                        var sqliteConnectionString = configuration["DatabaseSettings:SQLiteConnectionString"];
-                        DataBaseInit.DataBaseInitialize(sqliteConnectionString);
-                        repository = new SqliteProductRepository(sqliteConnectionString);
-                        break;
-
-                    case DatabaseType.MongoDB:
-                        var mongoConnectionString = configuration["DatabaseSettings:MongoDBConnectionString"];
-                        var mongoDatabaseName = configuration["DatabaseSettings:MongoDBDatabaseName"];
-                        repository = new MongoDBProductRepository(mongoConnectionString, mongoDatabaseName);
-                        break;
-
-                    default:
-                        throw new Exception("Ingen Databas vald.");
-                }
+                Console.WriteLine("Ogiltig databastyp angiven i appsettings.json. Kontrollera och försök igen.");
+                return;
             }
-            else
+            
+            var repositoryFactories = new Dictionary<DatabaseType, Func<IRepository<Product>>> // Skapa en dictionary med databastyp och en funktion som returnerar ett repository för respektive databastyp
             {
-                throw new Exception("Ogiltig eller saknad databaskonfiguration.");
-            }
+                { DatabaseType.SQLite, () => SqliteDatabaseSetup.ConfigureSqlite(configuration) },
+                { DatabaseType.MongoDB, () => MongoDbDatabaseSetup.ConfigureMongoDb(configuration) }
+            };
 
-            // Create ProductFacade with the repository
+            // Tilldela repository baserat på vald databastyp
+            repository = repositoryFactories[dbType]();
+
+            // Skapa facade och användargränssnitt och starta programmet
             var facade = new ProductFacade(repository);
-
-            // Create ConsoleUi with the facade and database type
             var ui = new ConsoleUi(facade, dbType);
-
-            // Start the application
             ui.Run();
         }
     }

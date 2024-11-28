@@ -15,64 +15,15 @@ namespace HenriksHobbyLager.Repositories
             _products = database.GetCollection<Product>("Products");
         }
 
-        public void AddProduct(Product product)
-        {
-            try
-            {
-                _products.InsertOne(product);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while adding the product.", ex);
-            }
-        }
+        public void AddProduct(Product product) =>_products.InsertOne(product);
 
-        public void Delete(int id)
-        {
-            try
-            {
-                _products.DeleteOne(p => p.Id == id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while deleting the product.", ex);
-            }
-        }
+        public void Delete(int id) =>_products.DeleteOne(p => p.Id == id);
 
-        public IEnumerable<Product> GetAll()
-        {
-            try
-            {
-                return _products.Find(p => true).ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while retrieving products.", ex);
-            }
-        }
-
-        public Product GetById(int id)
-        {
-            try
-            {
-                return _products.Find(p => p.Id == id).FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while retrieving the product.", ex);
-            }
-        }
-
-        public void UpdateProduct(Product product)
-        {
-            try
-            {
-                _products.ReplaceOne(p => p.Id == product.Id, product); // ReplaceOne avnänds för uppdatera projektet. 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while updating the product.", ex);
-            }
-        }
+        public IEnumerable<Product> GetAll() =>  _products.Find(p => true).ToList();
+        
+        public Product GetById(int id) =>  _products.Find(p => p.Id == id).FirstOrDefault();
+        
+        public void UpdateProduct(Product product) => _products.ReplaceOne(p => p.Id == product.Id, product); // ReplaceOne avnänds för uppdatera projektet. 
     }
 }
+

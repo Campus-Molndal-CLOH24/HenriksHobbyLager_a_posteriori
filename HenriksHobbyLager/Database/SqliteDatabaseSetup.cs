@@ -5,22 +5,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace HenriksHobbyLager.Database
 {
-    public static class SqliteConfigurator
+    public static class SqliteDatabaseSetup
     {
         public static IRepository<Product> ConfigureSqlite(IConfiguration configuration)
         {
-            // Hämta SQLite-anslutningssträngen
-            var sqliteConnectionString = configuration["DatabaseSettings:SQLiteConnectionString"];
-            if (string.IsNullOrWhiteSpace(sqliteConnectionString))
-            {
-                throw new ArgumentException("SQLite-anslutningssträngen är inte konfigurerad eller saknas i appsettings.json.");
-            }
-
-            // Initiera databasen
-            DataBaseInit.DataBaseInitialize(sqliteConnectionString);
-
-            // Returnera repository
-            return new SqliteProductRepository(sqliteConnectionString);
+            var sqliteConnectionString = configuration["DatabaseSettings:SQLiteConnectionString"]; // Hämtar anslutningssträngen för SQLite från konfigurationen (appsettings.json).
+            DataBaseInit.DataBaseInitialize(sqliteConnectionString);    // Initierar SQLite-databasen (om det behövs, dvs skapar tabeller).
+            return new SqliteProductRepository(sqliteConnectionString); //  Returnerar en instans av SqliteProductRepository, som används för att hantera SQLite-databasanrop.
         }
     }
 }
