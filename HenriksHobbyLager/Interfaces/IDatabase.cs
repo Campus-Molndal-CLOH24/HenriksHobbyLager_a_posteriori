@@ -14,6 +14,7 @@ namespace HenriksHobbyLager.Interfaces
         void AddProduct(Product product);
         IEnumerable<Product> GetAllProducts();
         Product GetProductById(int id);
+        Product GetProductByName(string search);
         void UpdateProduct(Product product);
         void DeleteProduct(int id);
     }

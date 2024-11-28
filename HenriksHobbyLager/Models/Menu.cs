@@ -33,7 +33,7 @@ namespace HenriksHobbyLager.Models
                 Console.WriteLine("2. Lägg till produkt");
                 Console.WriteLine("3. Uppdatera produkt");
                 Console.WriteLine("4. Ta bort produkt");
-                Console.WriteLine("5. Sök produkter");
+                Console.WriteLine("5. Sök efter produkt");
                 Console.WriteLine("6. Avsluta");  // Använd inte denna om du vill behålla datan!
 
                 var choice = Console.ReadLine();
@@ -70,28 +70,106 @@ namespace HenriksHobbyLager.Models
 
         private void ShowAllProducts()
         {
-            SearchAllProducts.SearchAll();
+            var products = _database.GetAllProducts();
+            foreach (var product in products)
+            {
+                Console.WriteLine($"{product.Id}: {product.Name} - {product.Price} kr - {product.Stock} st - {product.Category} - {product.Created} - {product.LastUpdated}");
+            }
         }
         private void AddProduct()
         {
-            CreateEntry.CreateProduct();
+            Console.WriteLine("Lägg till en produkt");
+
+            Console.Write("Namn: "); 
+            string name = Console.ReadLine();
+
+            Console.Write("Pris: "); 
+            if (!decimal.TryParse(Console.ReadLine(), out decimal price))
+            {
+                Console.WriteLine("Felaktig inmatning, priset måste vara ett tal!");
+                return; 
+            }
+            Console.Write("Lagersaldo: ");
+            if (!int.TryParse(Console.ReadLine(), out int stock))
+            {
+                Console.WriteLine("Felaktig inmatning, lagersaldot måste vara ett heltal!");
+                return;
+            }
+            Console.Write("Kategori: ");
+            string category = Console.ReadLine();
+
+            var product = new Product
+            {
+                Name = name,
+                Price = price,
+                Stock = stock,
+                Category = category
+            };
+            _database.AddProduct(product);
+            Console.WriteLine("Produkt tillagd!");
         }
         private void DeleteAProduct()
         {
-            DeleteProduct.DeleteOneProduct();
+            Console.Write("Ange ID på produkten du vill ta bort: ");
+            if (int.TryParse(Console.ReadLine(), out int id))
+            {
+                _database.DeleteProduct(id);
+                Console.WriteLine("Produkt borttagen!");
+            }
+            else
+            {
+                Console.Write("Ogiltigt ID!");
+            }
+
         }
 
         private void UpdateProduct()
         {
-            ProductUpdater.UpdateOneProduct();
+            Console.Write("Skriv ID på produkten du vill uppdatera: ");
+            if (!int.TryParse(Console.ReadLine(), out int id))
+            {
+                Console.WriteLine("Ogiltigt ID!");
+                return;
+            }
+
+            var product = _database.GetProductById(id);
+            if (product == null)
+            {
+                Console.Write("Produkten finns inte i databasen!");
+                return;
+            }
+
+            Console.Write("Nytt namn (lämna tomt om du vill behålla det gamla): ");
+            string newName = Console.ReadLine();
+
+            Console.Write("Nytt pris (lämna tomt om du vill behålla det gamla): ");
+            string newPriceInput = Console.ReadLine();
+
+            Console.Write("Nytt lagersaldo (lämna tomt om du vill behålla det gamla): ");
+            string newStockInput = Console.ReadLine();
+
+            Console.Write("Ny kategori (lämna tomt om du vill behålla det gamla): ");
+            string newCategory = Console.ReadLine();    
+
+            product.Name = string.IsNullOrEmpty(newName) ? product.Name : newName;
+            product.Price = decimal.TryParse(newPriceInput, out decimal newPrice) ? newPrice : product.Price;
+            product.Stock = int.TryParse(newStockInput, out int newStock) ? newStock : product.Stock;
+            product.Category = string.IsNullOrEmpty(newCategory) ? product.Category : newCategory;
+
+            _database.UpdateProduct(product);
+            Console.Write("Produkt uppdaterad!");
+
+
         }
 
         private void SearchProducts()
         {
-            SpecificSearcher.SearchSpecificProduct();
+            Console.Write("Sök efter produkt: ");
+            string search = Console.ReadLine();
+            var products = _database.GetProductByName(search);
         }
        
-
+    
 
 
         

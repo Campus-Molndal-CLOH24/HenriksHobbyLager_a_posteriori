@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HenriksHobbyLager.Database
 {
-    public class MongoDB : IDatabase
+    public class MongoDBDatabase : IDatabase
     {
         private IMongoDatabase _database;
 
@@ -43,6 +43,13 @@ namespace HenriksHobbyLager.Database
         {
             var collection = _database.GetCollection<Product>("Products");
             return collection.Find(p => p.Id == id).FirstOrDefault();
+        }
+        public Product GetProductByName(string search)
+        {
+            var collection = _database.GetCollection<Product>("Products");
+            var filter = Builders<Product>.Filter.Regex("Name", new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            return collection.Find(filter).FirstOrDefault();
+
         }
 
         public void UpdateProduct(Product product)
