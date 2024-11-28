@@ -71,6 +71,11 @@ namespace HenriksHobbyLager.Models
         private void ShowAllProducts()
         {
             var products = _database.GetAllProducts();
+            if (products == null || !products.Any())
+            {
+                Console.WriteLine();
+                return;
+            }
             foreach (var product in products)
             {
                 Console.WriteLine($"{product.Id}: {product.Name} - {product.Price} kr - {product.Stock} st - {product.Category} - {product.Created} - {product.LastUpdated}");
@@ -167,13 +172,25 @@ namespace HenriksHobbyLager.Models
             Console.Write("Sök efter produkt: ");
             string search = Console.ReadLine();
             var products = _database.GetProductByName(search);
+            if (products == null || !products.Any())
+            {
+                Console.WriteLine("Inga produkter hittades!");
+                return;
+            }
+
+            foreach (var product in products)
+            {
+                Console.WriteLine($"ID: {product.Id}, Namn: {product.Name}, Pris: {product.Price}, Lager: {product.Stock}, Kategori: {product.Category}, Skapad: {product.Created}, Uppdaterad: {product.LastUpdated}");
+            }
         }
+
+    }
        
     
 
 
         
     }
-}
+
 
        

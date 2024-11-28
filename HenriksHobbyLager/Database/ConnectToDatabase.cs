@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HenriksHobbyLager.Database
+/*namespace HenriksHobbyLager.Database
 {
     public class ConnectToDatabase : ConnectionString
     {
@@ -22,4 +22,4 @@ namespace HenriksHobbyLager.Database
     }
 }
          
-
+*/

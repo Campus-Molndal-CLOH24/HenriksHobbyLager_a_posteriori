@@ -60,6 +60,7 @@ namespace RefactoringExercise
 { 
     public class Program
     {
+        static IDatabase _database;
         public static void Main(string[] args)
         {
             // Läser config.txt

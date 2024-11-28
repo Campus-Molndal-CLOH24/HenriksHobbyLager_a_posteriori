@@ -30,9 +30,7 @@ namespace HenriksHobbyLager.Database
                 connection.Open();
                 var command = connection.CreateCommand();
                 command.CommandText = "CREATE TABLE IF NOT EXISTS Products (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name STRING NOT NULL, Price REAL NOT NULL, Stock INTEGER NOT NULL, Category STRING NOT NULL, Created DATETIME DEFAULT CURRENT_TIMESTAMP, Updated DATETIME);";
-                command.ExecuteNonQuery();
-                command.CommandText = "CREATE TRIGGER SetUpdatedTimestamp AFTER UPDATE ON Products BEGIN UPDATE Products SET Updated = CURRENT_TIMESTAMP WHERE rowid = NEW.rowid; END;";
-                command.ExecuteNonQuery();
+                command.ExecuteNonQuery();                
                 Console.WriteLine("Tabell skapad!");
             }
         }
@@ -114,38 +112,42 @@ namespace HenriksHobbyLager.Database
             }
             return null;
         }
-        public Product GetProductByName(string name)
+        public IEnumerable<Product> GetProductByName(string name)
         {
-            {
-                using (var connection = new SqliteConnection(_connectionString))
+            
                 {
-                    connection.Open();
-                    using (var command = new SqliteCommand("SELECT * FROM Products WHERE Name = @Name;", connection))
+                    var products = new List<Product>();
+
+                    using (var connection = new SqliteConnection(_connectionString)) 
+                    { 
+                        connection.Open();
+                        using (var command = new SqliteCommand("SELECT * FROM Products WHERE Name LIKE @search;", connection))
                     {
-                        command.Parameters.AddWithValue("@Name", name);
+                        command.Parameters.AddWithValue("@search", "%" + name + "%");
                         using (var reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
                             {
-                                return new Product
+                                while (reader.Read())
                                 {
-                                    Id = reader.GetInt32(reader.GetOrdinal("ID")),
-                                    Name = reader.GetString(reader.GetOrdinal("Name")),
-                                    Price = reader.GetDecimal(reader.GetOrdinal("Price")),
-                                    Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
-                                    Category = reader.GetString(reader.GetOrdinal("Category")),
-                                    Created = reader.GetDateTime(reader.GetOrdinal("Created")),
-                                    LastUpdated = reader.IsDBNull(reader.GetOrdinal("Updated"))
-                                        ? (DateTime?)null
-                                        : reader.GetDateTime(reader.GetOrdinal("Updated"))
-                                };
+                                    products.Add(new Product
+                                    {
+                                        Id = reader.GetInt32(reader.GetOrdinal("ID")),
+                                        Name = reader.GetString(reader.GetOrdinal("Name")),
+                                        Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                        Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
+                                        Category = reader.GetString(reader.GetOrdinal("Category")),
+                                        Created = reader.GetDateTime(reader.GetOrdinal("Created")),
+                                        LastUpdated = reader.IsDBNull(reader.GetOrdinal("Updated"))
+                                            ? (DateTime?)null
+                                            : reader.GetDateTime(reader.GetOrdinal("Updated"))
+                                    });
+                                }
                             }
                         }
-                    }
+                    }return products;
                 }
-                return null;
+                
             }
-        }
+        
             public void UpdateProduct(Product product)
         {
             using (var connection = new SqliteConnection(_connectionString))

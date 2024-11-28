@@ -1,9 +1,0 @@
-# Database type: SQL or NoSQL (MongoDB)
-
-type=SQL
-
-# Connection string
-
-sql_connection=Data Source=HenriksHobbyLager.db
-mongo_connection=mongodb+srv://username:password@cluster.mongodb.net/HenriksHobbyLager
-

@@ -11,10 +11,18 @@ namespace HenriksHobbyLager.Utilities
         public static (string type, string connectionString) ReadConfig(string filePath)
         {
             var configLines = File.ReadAllLines(filePath)
-                .Select(line => line.Split('='))
-                .ToDictionary(split => split[0].Trim(), split => split[1].Trim());
+                .Where(line => !string.IsNullOrWhiteSpace(line)) // Ignore empty lines
+                .Where(line => !line.Trim().StartsWith("#"))    // Ignore comments
+                .Select(line => line.Split(new[] { '=' }, 2))    // Split into at most 2 parts
+                .ToDictionary(
+                    split => split[0].Trim(),
+                    split => split.Length > 1 ? split[1].Trim() : string.Empty // Handle lines without a value
+                );
 
+            // Get database type
             string dbType = configLines["type"];
+
+            // Get connection string based on the database type
             string connectionString = dbType == "SQL"
                 ? configLines["sql_connection"]
                 : configLines["mongo_connection"];
