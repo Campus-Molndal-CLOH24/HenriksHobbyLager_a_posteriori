@@ -57,7 +57,7 @@ namespace HenriksHobbyLager.Models
                         SearchProducts();
                         break;
                     case "6":
-                        return;  // OBS! All data försvinner om du väljer denna!
+                        return; 
                     default:
                         Console.WriteLine("Ogiltigt val! Är du säker på att du tryckte på rätt knapp?");
                         break;
@@ -78,7 +78,7 @@ namespace HenriksHobbyLager.Models
             }
             foreach (var product in products)
             {
-                Console.WriteLine($"{product.Id}: {product.Name} - {product.Price} kr - {product.Stock} st - {product.Category} - {product.Created} - {product.LastUpdated}");
+                Console.WriteLine($"ID: {product.Id} - {product.Name} - {product.Price} kr - {product.Stock} st - {product.Category} - {product.Created} - {product.LastUpdated}");
             }
         }
         private void AddProduct()

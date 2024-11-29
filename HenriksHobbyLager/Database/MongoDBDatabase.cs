@@ -29,6 +29,8 @@ namespace HenriksHobbyLager.Database
         public void AddProduct(Product product)
         {
             var collection = _database.GetCollection<Product>("Products");
+            var maxId = collection.AsQueryable().OrderByDescending(p => p.Id).FirstOrDefault()?.Id ?? 0;
+            product.Id = maxId + 1;
             collection.InsertOne(product);
             Console.WriteLine("Produkt tillagd!");
         }
