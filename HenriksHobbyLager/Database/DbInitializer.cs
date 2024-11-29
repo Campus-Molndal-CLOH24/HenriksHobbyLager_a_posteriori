@@ -7,10 +7,8 @@ namespace HenriksHobbyLager.Models
     public class DbInitializer
     {
         public static void DataBaseInitialize(string connectionString) // Anslutningssträngen används för att koppla upp sig mot SQLite-databasen.
-
         {
             using (var connection = new SqliteConnection(connectionString)) // Skapar en ny SQLite-anslutning med hjälp av den medföljande anslutningssträngen.
-
             {
                 connection.Open();  // Öppnar anslutningen till databasen.
 

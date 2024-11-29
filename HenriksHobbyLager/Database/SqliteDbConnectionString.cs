@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace HenriksHobbyLager.Database
 {
-    public static class SqliteDbSetup
+    public static class SqliteDbConnectionString
     {
         public static IRepository<Product> ConfigureSqlite(IConfiguration configuration)
         {

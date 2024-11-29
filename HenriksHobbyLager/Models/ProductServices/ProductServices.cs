@@ -56,14 +56,14 @@ public class ProductsServices
         Console.WriteLine("=== Uppdatera produkt ===");
 
         Console.Write("Ange produkt-ID att uppdatera: ");
-        if (!int.TryParse(Console.ReadLine(), out var id))
+        if (!int.TryParse(Console.ReadLine(), out var id)) // Om ID inte är int
         {
             Console.WriteLine("Ogiltigt ID!");
             return;
         }
 
-        var product = _productFacade.GetProduct(id);
-        if (product == null)
+        var product = _productFacade.GetProduct(id); 
+        if (product == null) // Om ID inte finns i databasen
         {
             Console.WriteLine("Produkten hittades inte!");
             return;
@@ -97,15 +97,8 @@ public class ProductsServices
             return;
         }
 
-        try
-        {
-            _productFacade.DeleteProduct(id);
-            Console.WriteLine("Produkten har tagits bort!");
-        }
-        catch (ArgumentException ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        _productFacade.DeleteProduct(id);
+        Console.WriteLine("Produkten har tagits bort!");
     }
 
     public void SearchProducts()

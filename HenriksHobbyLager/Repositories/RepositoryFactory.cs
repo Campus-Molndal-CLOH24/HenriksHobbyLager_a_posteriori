@@ -12,8 +12,8 @@ namespace HenriksHobbyLager.Factories
             // Dictionary för att mappa databastyper till repository-konfigurationer
             var repositoryFactories = new Dictionary<DbTypeEnum, Func<IRepository<Product>>>
             {
-                { DbTypeEnum.SQLite, () => SqliteDbSetup.ConfigureSqlite(configuration) },
-                { DbTypeEnum.MongoDB, () => MongoDbSetup.ConfigureMongoDb(configuration) }
+                { DbTypeEnum.SQLite, () => SqliteDbConnectionString.ConfigureSqlite(configuration) },
+                { DbTypeEnum.MongoDB, () => MongoDbConnectionString.ConfigureMongoDb(configuration) }
             };
 
             // Kontrollera att databastypen stöds

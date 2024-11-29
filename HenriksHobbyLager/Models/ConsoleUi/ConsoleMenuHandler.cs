@@ -4,13 +4,13 @@ using HenriksHobbyLager.Models.ProductServices;
 
 namespace HenriksHobbyLager.Models
 {
-    public class ConsoleUi
+    public class ConsoleMenuHandler
     {
         private readonly ProductsServices _productsServices; // Privat fält för ProductsServices
         private readonly DbTypeEnum _dbTypeEnum; // Privat fält för aktuell databas
 
         // Konstruktor som tar emot ProductsServices och DatabaseType
-        public ConsoleUi(ProductsServices productsServices, DbTypeEnum dbTypeEnum)
+        public ConsoleMenuHandler(ProductsServices productsServices, DbTypeEnum dbTypeEnum)
         {
             _productsServices = productsServices; // Tilldelar services-instansen
             _dbTypeEnum = dbTypeEnum; // Tilldelar databasens typ

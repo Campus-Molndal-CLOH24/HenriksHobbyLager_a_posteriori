@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace HenriksHobbyLager.Database;
 
-public static class MongoDbSetup
+public static class MongoDbConnectionString
 {
     public static IRepository<Product> ConfigureMongoDb(IConfiguration configuration)
     {
