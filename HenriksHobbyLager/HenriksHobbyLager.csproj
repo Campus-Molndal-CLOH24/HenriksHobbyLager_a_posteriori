@@ -9,9 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Database\dummy.md" />
-    <Compile Include="Interfaces\dummy.md" />
-    <Compile Include="Models\dummy.md" />
+    <PackageReference Include="microsoft.data.sqlite" Version="9.0.0" />
+    <PackageReference Include="mongodb.driver" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
