@@ -2,13 +2,13 @@ namespace HenriksHobbyLager.Models;
 
 public class UserInputHandler
 {
-    public static string GetNameInput(string name)
+    public static string SetName(string name)
     {
         Console.WriteLine($"{name}");
         return Console.ReadLine();
     }
 
-    public static decimal GetPriceInput(string price)
+    public static decimal SetPrice(string price)
     {
         decimal value;
         Console.WriteLine($"{price}");
@@ -20,7 +20,7 @@ public class UserInputHandler
         return value;
     }
 
-    public static int GetStockInput(string stock)
+    public static int SetStock(string stock)
     {
         int value;
         Console.WriteLine($"{stock}");
@@ -32,7 +32,7 @@ public class UserInputHandler
         return value;
     }
 
-    public static string GetCategoryInput(string category)
+    public static string SetCategory(string category)
     {
         Console.WriteLine($"{category}");
         return Console.ReadLine();

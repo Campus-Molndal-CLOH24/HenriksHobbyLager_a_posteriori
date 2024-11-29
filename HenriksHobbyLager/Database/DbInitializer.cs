@@ -4,7 +4,7 @@ namespace HenriksHobbyLager.Models
 {
     // klass ansvarar för att initiera databasen.
     // Syftet är att se till att nödvändiga tabeller skapas om de inte redan finns.
-    public class DataBaseInit
+    public class DbInitializer
     {
         public static void DataBaseInitialize(string connectionString) // Anslutningssträngen används för att koppla upp sig mot SQLite-databasen.
 

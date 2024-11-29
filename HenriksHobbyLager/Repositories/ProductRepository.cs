@@ -3,8 +3,7 @@ using HenriksHobbyLager.Models;
 
 namespace HenriksHobbyLager.Repositories
 {
-    // implementerar IRepository<T> för att hantera lagring av Product-objekt
-    public class ProductRepository : IRepository<Product>
+    public class ProductRepository : IRepository<Product>     // implementerar IRepository<Product> för att hantera lagring av Product-objekt
     {
         private readonly List<Product> _products = new(); // Lista för att lagra produkter, Lagrar i databaser nu!
 
@@ -12,7 +11,7 @@ namespace HenriksHobbyLager.Repositories
 
         public IEnumerable<Product> GetAll() => _products;
 
-        public Product? GetById(int id) => _products.FirstOrDefault(p => p.Id == id);
+        public Product GetById(int id) => _products.FirstOrDefault(p => p.Id == id);
 
         public void AddProduct(Product product)
         {

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace HenriksHobbyLager.Database;
 
-public static class MongoDbDatabaseSetup
+public static class MongoDbSetup
 {
     public static IRepository<Product> ConfigureMongoDb(IConfiguration configuration)
     {
@@ -14,6 +14,5 @@ public static class MongoDbDatabaseSetup
         
         // Behövs ingen initiering av databasen då den är schemallös om jag har förstått rätt
         return new MongoDBProductRepository(mongoConnectionString, mongoDatabaseName);                         // Returnerar en instans av MongoDBProductRepository, som används för att hantera MongoDB-databasanrop.
-
     }
 }

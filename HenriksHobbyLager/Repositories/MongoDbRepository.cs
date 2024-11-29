@@ -26,4 +26,3 @@ namespace HenriksHobbyLager.Repositories
         public void UpdateProduct(Product product) => _products.ReplaceOne(p => p.Id == product.Id, product); // ReplaceOne avnänds för uppdatera projektet. 
     }
 }
-

@@ -4,9 +4,8 @@ namespace HenriksHobbyLager.Database;
 // Do not touch this file
 // Change in appsettings.json to change database type
 // Use "SQLite" or "MongoDB"
-public enum DatabaseType
+public enum DbTypeEnum
 {
     SQLite,
     MongoDB
 }
-

@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace HenriksHobbyLager.Database;
 
-public class BuildConfig
+public class DbConfig
 {
     public static IConfiguration BuildConfiguration() // IConfiguration gets or sets a configuration value.
     {

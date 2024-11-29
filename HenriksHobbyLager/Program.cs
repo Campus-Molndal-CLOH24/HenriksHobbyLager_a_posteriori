@@ -1,7 +1,7 @@
 ﻿using HenriksHobbyLager.Database;
-using HenriksHobbyLager.Interfaces;
+using HenriksHobbyLager.Factories;
 using HenriksHobbyLager.Models;
-using Microsoft.Extensions.Configuration;
+using HenriksHobbyLager.Models.ProductServices;
 
 namespace HenriksHobbyLager
 {
@@ -9,29 +9,25 @@ namespace HenriksHobbyLager
     {
         static void Main(string[] args)
         {
-            var configuration = BuildConfig.BuildConfiguration();
+            // Ladda konfiguration
+            var configuration = DbConfig.BuildConfiguration();
 
-            DatabaseType dbType;
-            IRepository<Product> repository;
-
-            if (!Enum.TryParse(configuration["DatabaseSettings:DatabaseType"], out dbType))
+            // Kontrollera databastypen
+            if (!Enum.TryParse(configuration["DatabaseSettings:DatabaseType"], out DbTypeEnum dbTypeEnum))
             {
                 Console.WriteLine("Ogiltig databastyp angiven i appsettings.json. Kontrollera och försök igen.");
                 return;
             }
-            
-            var repositoryFactories = new Dictionary<DatabaseType, Func<IRepository<Product>>> // Skapa en dictionary med databastyp och en funktion som returnerar ett repository för respektive databastyp
-            {
-                { DatabaseType.SQLite, () => SqliteDatabaseSetup.ConfigureSqlite(configuration) },
-                { DatabaseType.MongoDB, () => MongoDbDatabaseSetup.ConfigureMongoDb(configuration) }
-            };
 
-            // Tilldela repository baserat på vald databastyp
-            repository = repositoryFactories[dbType]();
+            // Skapa repository baserat på databastyp
+            var repository = RepositoryFactory.CreateRepository(dbTypeEnum, configuration);
 
-            // Skapa facade och användargränssnitt och starta programmet
-            var facade = new ProductFacade(repository);
-            var ui = new ConsoleUi(facade, dbType);
+            // Initiera tjänster och UI
+            var productFacade = new ProductFacade(repository);
+            var productsServices = new ProductsServices(productFacade);
+            var ui = new ConsoleUi(productsServices, dbTypeEnum);
+
+            // Starta programmet
             ui.Run();
         }
     }
