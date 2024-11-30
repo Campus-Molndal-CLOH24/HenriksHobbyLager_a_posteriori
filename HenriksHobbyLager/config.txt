@@ -1,0 +1,8 @@
+# Database type: SQL or NoSQL (MongoDB)
+
+type=SQL
+
+# Connection string
+
+sql_connection=Data Source=HenriksNyaHobbyLager.db
+mongo_connection=mongodb+srv://otto:otto@henrikshobbylagercluste.c5exb.mongodb.net/HenriksHobbyLager?retryWrites=true&w=majority
