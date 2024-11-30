@@ -46,4 +46,18 @@ och öppna filen config som ett vanligt textdokument (i Windows med programmet A
 Stäng programmet och tryck på "spara" när prompten kommer upp. 
 
 5. Lista över implementerade patterns
+
++ Factory Pattern
+  Används för att skapa rätt typ av databas, antingen SQLite eller MongoDB. DatabaseFactory hanterar detta och gör det enkelt att byta mellan olika databaser. Det bidrar till en flexibel och skalbar lösning.
++ Repository Pattern
+  Gör att all hantering av data, som att lägga till, hämta och ta bort produkter, sker via en tydlig struktur. IRepository och ProductFacade används för detta. Det förenklar kodunderhållet och återanvändning av logik.
++ Dependency Injection
+  Gör att databasen (IDatabase) skickas in i andra klasser, som Menu, istället för att de själva skapar den. Det gör koden enklare att ändra och testa. Dessutom blir det lättare att byta databas om det behövs.
++ Facade Pattern
+  ProductFacade samlar alla produktoperationer i en enda klass. Det gör att andra delar av programmet inte behöver veta hur produkterna hanteras i databasen. Detta skapar en tydligare struktur i koden.
++ Singleton Pattern
+  Ser till att bara en databasinstans skapas under körning. Detta görs indirekt via DatabaseFactory. Det förhindrar onödiga dupliceringar av databasanslutningar.
++ Strategy Pattern
+  Används för att välja om SQLite eller MongoDB ska användas, beroende på vad som är inställt i konfigurationen. Detta val hanteras av DatabaseFactory. Det gör systemet flexibelt för olika behov.
+
 6. Kort beskrivning av databasstrukturen
