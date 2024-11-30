@@ -28,6 +28,7 @@ namespace HenriksHobbyLager.Models
             while (true)
             {
                 Console.Clear();  // Rensar skärmen så det ser proffsigt ut
+                Console.WriteLine($"Aktiv Database: {_database.GetType().Name}");
                 Console.WriteLine("=== Henriks HobbyLager™ 1.0 ===");
                 Console.WriteLine("1. Visa alla produkter");
                 Console.WriteLine("2. Lägg till produkt");
@@ -103,12 +104,15 @@ namespace HenriksHobbyLager.Models
             Console.Write("Kategori: ");
             string category = Console.ReadLine();
 
+            var created = DateTime.Now;
+            
             var product = new Product
             {
                 Name = name,
                 Price = price,
                 Stock = stock,
-                Category = category
+                Category = category,
+                Created = created
             };
             _database.AddProduct(product);
             Console.WriteLine("Produkt tillagd!");
@@ -170,6 +174,7 @@ namespace HenriksHobbyLager.Models
             product.Price = decimal.TryParse(newPriceInput, out decimal newPrice) ? newPrice : product.Price;
             product.Stock = int.TryParse(newStockInput, out int newStock) ? newStock : product.Stock;
             product.Category = string.IsNullOrEmpty(newCategory) ? product.Category : newCategory;
+            product.LastUpdated = DateTime.Now;
 
             _database.UpdateProduct(product);
             Console.Write("Produkt uppdaterad!");

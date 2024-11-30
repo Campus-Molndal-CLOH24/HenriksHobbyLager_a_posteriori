@@ -32,7 +32,6 @@ namespace HenriksHobbyLager.Database
             var maxId = collection.AsQueryable().OrderByDescending(p => p.Id).FirstOrDefault()?.Id ?? 0;
             product.Id = maxId + 1;
             collection.InsertOne(product);
-            
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -59,7 +58,6 @@ namespace HenriksHobbyLager.Database
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, product.Id);
             collection.ReplaceOne(filter, product);
-            Console.WriteLine("Produkt uppdaterad!");
         }
 
         public void DeleteProduct(int id)
@@ -67,7 +65,6 @@ namespace HenriksHobbyLager.Database
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, id);
             collection.DeleteOne(filter);
-            
         }
     }
 }
