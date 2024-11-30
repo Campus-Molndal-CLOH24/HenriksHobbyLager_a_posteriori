@@ -61,5 +61,6 @@ Stäng programmet och tryck på "spara" när prompten kommer upp.
   Används för att välja om SQLite eller MongoDB ska användas, beroende på vad som är inställt i konfigurationen. Detta val hanteras av DatabaseFactory. Det gör systemet flexibelt för olika behov.
 
 6. Kort beskrivning av databasstrukturen
+
 Tabellen för produkter innehåller egenskaper som Id, Name, Price, Stock och Category. Databasen kan vara antingen en relationsdatabas (SQLite) eller en dokumentdatabas (MongoDB), beroende på vilken typ som väljs vid körning. Operationer som att lägga till, uppdatera, söka och ta bort produkter hanteras via ett gränssnitt (IDatabase).
 Programmet är byggt så man säkerställer att all produktdata hanteras konsekvent oavsett databastyp.
