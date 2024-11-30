@@ -50,7 +50,7 @@ namespace HenriksHobbyLager.Database
                 command.Parameters.AddWithValue("@Stock", product.Stock);
                 command.Parameters.AddWithValue("@Category", product.Category);
                 command.ExecuteNonQuery();
-                Console.WriteLine("Produkt tillagd!");
+                
             }
         }
         public IEnumerable<Product> GetAllProducts()
@@ -181,7 +181,7 @@ namespace HenriksHobbyLager.Database
                     command.Parameters.AddWithValue("@ID", id);
                     command.ExecuteNonQuery();
 
-                    Console.WriteLine("Produkt borttagen!");
+                    
                 }
             }
         }

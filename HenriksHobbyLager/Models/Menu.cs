@@ -116,16 +116,25 @@ namespace HenriksHobbyLager.Models
         private void DeleteAProduct()
         {
             Console.Write("Ange ID på produkten du vill ta bort: ");
-            if (int.TryParse(Console.ReadLine(), out int id))
+            if (!int.TryParse(Console.ReadLine(), out int id))
             {
-                _database.DeleteProduct(id);
-                Console.WriteLine("Produkt borttagen!");
+                Console.WriteLine("Ogiltigt ID!");
+                return;
             }
-            else
+            var product = _database.GetProductById(id);
+            if (product == null)
             {
-                Console.Write("Ogiltigt ID!");
-            }
-
+                Console.Write("Produkten finns inte i databasen!");
+                return;
+            }  
+            _database.DeleteProduct(id);
+            Console.WriteLine("Produkt borttagen!");
+            
+         
+               
+         
+                
+           
         }
 
         private void UpdateProduct()
@@ -136,13 +145,14 @@ namespace HenriksHobbyLager.Models
                 Console.WriteLine("Ogiltigt ID!");
                 return;
             }
-
             var product = _database.GetProductById(id);
             if (product == null)
             {
                 Console.Write("Produkten finns inte i databasen!");
                 return;
             }
+
+
 
             Console.Write("Nytt namn (lämna tomt om du vill behålla det gamla): ");
             string newName = Console.ReadLine();
