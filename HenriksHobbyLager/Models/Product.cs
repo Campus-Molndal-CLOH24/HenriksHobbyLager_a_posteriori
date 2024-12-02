@@ -14,8 +14,8 @@ public class Product
     public decimal Price { get; set; }
     public int Stock { get; set; }
     public string Category { get; set; }
-    public DateTime Created { get; set; } // Ändrat till DateTime
-    public DateTime Updated { get; set; } // Ändrat till DateTime
+    public DateTime Created { get; set; } 
+    public DateTime Updated { get; set; } 
 }
 
 

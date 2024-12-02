@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HenriksHobbyLager.Helpers
 {
-    public static class ConsoleHelper//För att slippa alla console.writeline och console.readline i ProductService
+    public static class ConsoleHelper//För att slippa alla console.writeline och console.readline i Program
     {
         public static void PrintProduct(Product product)
         {
