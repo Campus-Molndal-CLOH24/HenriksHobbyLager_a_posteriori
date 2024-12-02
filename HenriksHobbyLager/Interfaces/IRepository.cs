@@ -1,20 +1,17 @@
-﻿using HenriksHobbyLager.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+using HenriksHobbyLager.Models;
 
 namespace HenriksHobbyLager.Interfaces
 {
-        public interface IRepository<T>
-        {
-            IEnumerable<T> GetAll();
-            T GetById(int id);
-            void Add(T entity);
-            void Update(T entity);
-            void Delete(int id);
-            IEnumerable<T> Search(Func<T, bool> predicate);
-        }
+    public interface IRepository<T>
+    {
+        IEnumerable<T> GetAll();
+        void Add(T entity);
+        void Update(T entity);
+        void Delete(int id);
+        IEnumerable<T> Search(string searchTerm); // Lägg till sökmetoden
+        Product GetById(int result);
+    }
     
 }

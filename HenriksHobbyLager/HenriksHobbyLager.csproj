@@ -10,11 +10,21 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.data.sqlite" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="mongodb.driver" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <Content Include="bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll" />
+    <Content Include="bin\Debug\net9.0\SharpCompress.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net9.0\HenriksHobbyLager.db" />
   </ItemGroup>
 
 </Project>

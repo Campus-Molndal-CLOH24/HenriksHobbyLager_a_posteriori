@@ -1,16 +1,6 @@
 ﻿using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
 using Microsoft.Data.Sqlite;
-using MongoDB.Driver.Core.Configuration;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace HenriksHobbyLager.Database
 {
@@ -38,33 +28,33 @@ namespace HenriksHobbyLager.Database
         }
 
 
-        public void AddProduct(Product product)
+        public void AddProduct(Product product) // Lägger till en produkt i databasen
         {
             using (var connection = new SqliteConnection(_connectionString))
             {
                 connection.Open();
                 var command = connection.CreateCommand();
                 command.CommandText =
-                    "INSERT INTO Products (Name, Price, Stock, Category) VALUES (@Name, @Price, @Stock, @Category);";
+                    "INSERT INTO Products (Name, Price, Stock, Category Created) VALUES (@Name, @Price, @Stock, @Category @Created);";
                 command.Parameters.AddWithValue("@Name", product.Name);
                 command.Parameters.AddWithValue("@Price", product.Price);
                 command.Parameters.AddWithValue("@Stock", product.Stock);
                 command.Parameters.AddWithValue("@Category", product.Category);
+                command.Parameters.AddWithValue("@Created", product.Created);
                 command.ExecuteNonQuery();
             }
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> GetAllProducts() // Hämtar alla produkter från databasen
         {
             var products = new List<Product>();
-            using (var connection = new SqliteConnection(_connectionString))
+            using (var connection = new SqliteConnection(_connectionString)) // Skapar en anslutning till databasen
             {
                 connection.Open();
                 using (var command = new SqliteCommand("SELECT * FROM Products;", connection))
                 using (var reader = command.ExecuteReader())
                 {
                     Console.WriteLine("Alla produkter: ");
-
                     while (reader.Read())
                     {
                         int id = reader.GetInt32(reader.GetOrdinal("ID"));
@@ -85,7 +75,7 @@ namespace HenriksHobbyLager.Database
                             Stock = stock,
                             Category = category,
                             Created = created,
-                            LastUpdated = updated
+                            Updated = updated
                         });
                     }
                 }
@@ -94,7 +84,7 @@ namespace HenriksHobbyLager.Database
             foreach (var product in products)
             {
                 Console.WriteLine(
-                    $"ID: {product.Id}, Namn: {product.Name}, Pris: {product.Price}, Lager: {product.Stock}, Kategori: {product.Category}, Skapad: {product.Created}, Uppdaterad: {product.LastUpdated}");
+                    $"ID: {product.Id}, Namn: {product.Name}, Pris: {product.Price}, Lager: {product.Stock}, Kategori: {product.Category}, Skapad: {product.Created}, Uppdaterad: {product.Updated}");
             }
 
             return null;
@@ -120,7 +110,7 @@ namespace HenriksHobbyLager.Database
                                 Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
                                 Category = reader.GetString(reader.GetOrdinal("Category")),
                                 Created = reader.GetDateTime(reader.GetOrdinal("Created")),
-                                LastUpdated = reader.IsDBNull(reader.GetOrdinal("Updated"))
+                                Updated = reader.IsDBNull(reader.GetOrdinal("Updated"))
                                     ? (DateTime?)null
                                     : reader.GetDateTime(reader.GetOrdinal("Updated"))
                             };
@@ -158,7 +148,7 @@ namespace HenriksHobbyLager.Database
                                     Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
                                     Category = reader.GetString(reader.GetOrdinal("Category")),
                                     Created = reader.GetDateTime(reader.GetOrdinal("Created")),
-                                    LastUpdated = reader.IsDBNull(reader.GetOrdinal("Updated"))
+                                    Updated = reader.IsDBNull(reader.GetOrdinal("Updated"))
                                         ? (DateTime?)null
                                         : reader.GetDateTime(reader.GetOrdinal("Updated"))
                                 });
