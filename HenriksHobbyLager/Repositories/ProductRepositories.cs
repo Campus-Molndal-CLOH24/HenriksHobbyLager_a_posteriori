@@ -38,7 +38,7 @@ namespace HenriksHobbyLager.Repositories
                 product.Price = updatedProduct.Price;
                 product.Stock = updatedProduct.Stock;
                 product.Category = updatedProduct.Category;
-                product.LastUpdated = DateTime.Now;
+             
             }
         }
 

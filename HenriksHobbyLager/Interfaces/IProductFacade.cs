@@ -9,7 +9,8 @@ namespace HenriksHobbyLager.Interfaces
     public interface IProductFacade
 
     {
-         
+     
+            
 
 
     }

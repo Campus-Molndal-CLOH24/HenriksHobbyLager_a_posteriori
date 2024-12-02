@@ -34,7 +34,6 @@ var anka = new Product
     PS. Om någon hittar det här i framtiden: Jag vet att koden kunde varit snyggare, 
     men den fungerar! Och det är huvudsaken... right?
 */
-
 using HenriksHobbyLager.Repositories;
 using HenriksHobbyLager.Services;
 using HenriksHobbyLager;
@@ -44,10 +43,24 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        // Testa anslutningen till databasen
+        using (var context = new AppDbContext())
+        {
+            var toys = context.Products.ToList(); // Hämta alla rader från tabellen
+            Console.WriteLine($"Hittade {toys.Count} leksaker i databasen!");
+
+            foreach (var toy in toys)
+            {
+                Console.WriteLine($"Name: {toy.Name}, Price: {toy.Price}, Stock: {toy.Stock}");
+            }
+        }
+
+        // Starta repositories, services och menyhanteraren
         var repository = new ProductRepository(); // Hanterar data
         var productService = new ProductService(repository); // Hanterar logik
         var menuHandler = new MenuHandler(productService); // Hanterar menyval
 
+        // Kör huvudloopen för menyhantering
         while (true)
         {
             menuHandler.ShowMenu(); // Visa menyn

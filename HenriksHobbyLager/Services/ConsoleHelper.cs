@@ -14,7 +14,7 @@ namespace HenriksHobbyLager.Helpers
             Console.WriteLine($"Antal i lager: {product.Stock}");
             Console.WriteLine($"Kategori: {product.Category}");
             Console.WriteLine($"Skapad: {product.Created}");
-            Console.WriteLine($"Senast uppdaterad: {product.LastUpdated}");
+            Console.WriteLine($"Senast uppdaterad: {product.Updated}");
             Console.WriteLine(); // Lägger till en tom rad för att skilja produkterna
         }
 
