@@ -30,13 +30,8 @@ namespace HenriksHobbyLager.Database
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = @"CREATE TABLE IF NOT EXISTS 
-                    Products (ID INTEGER PRIMARY KEY AUTOINCREMENT, 
-                    Name STRING NOT NULL, Price REAL NOT NULL, 
-                    Stock INTEGER NOT NULL, 
-                    Category STRING NOT NULL, 
-                    Created DATETIME DEFAULT CURRENT_TIMESTAMP, 
-                    Updated DATETIME);";
+                command.CommandText =
+                    "CREATE TABLE IF NOT EXISTS Products (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name STRING NOT NULL, Price REAL NOT NULL, Stock INTEGER NOT NULL, Category STRING NOT NULL, Created DATETIME DEFAULT CURRENT_TIMESTAMP, Updated DATETIME);";
                 command.ExecuteNonQuery();
                 Console.WriteLine("Tabell skapad!");
             }
@@ -56,7 +51,6 @@ namespace HenriksHobbyLager.Database
                 command.Parameters.AddWithValue("@Stock", product.Stock);
                 command.Parameters.AddWithValue("@Category", product.Category);
                 command.ExecuteNonQuery();
-                Console.WriteLine("Produkt tillagd!");
             }
         }
 
@@ -103,7 +97,7 @@ namespace HenriksHobbyLager.Database
                     $"ID: {product.Id}, Namn: {product.Name}, Pris: {product.Price}, Lager: {product.Stock}, Kategori: {product.Category}, Skapad: {product.Created}, Uppdaterad: {product.LastUpdated}");
             }
 
-            return products;
+            return null;
         }
 
         public Product GetProductById(int id)
@@ -138,39 +132,43 @@ namespace HenriksHobbyLager.Database
             return null;
         }
 
-        public IEnumerable<Product> GetProductByName(string search)
+        public IEnumerable<Product> GetProductByName(string name)
         {
-            var products = new List<Product>();
-            using (var connection = new SqliteConnection(_connectionString))
             {
-                connection.Open();
-                using (var command =
-                       new SqliteCommand("SELECT * FROM Products WHERE Name LIKE @search OR Category LIKE @search;",
-                           connection))
+                var products = new List<Product>();
+
+                using (var connection = new SqliteConnection(_connectionString))
                 {
-                    command.Parameters.AddWithValue("@search", "%" + search + "%");
-                    using (var reader = command.ExecuteReader())
+                    connection.Open();
+                    using (var command =
+                           new SqliteCommand("SELECT * FROM Products WHERE Name LIKE @search OR Category LIKE @search;",
+                               connection))
+
                     {
-                        while (reader.Read())
+                        command.Parameters.AddWithValue("@search", "%" + name + "%");
+                        using (var reader = command.ExecuteReader())
                         {
-                            products.Add(new Product
+                            while (reader.Read())
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("ID")),
-                                Name = reader.GetString(reader.GetOrdinal("Name")),
-                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
-                                Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
-                                Category = reader.GetString(reader.GetOrdinal("Category")),
-                                Created = reader.GetDateTime(reader.GetOrdinal("Created")),
-                                LastUpdated = reader.IsDBNull(reader.GetOrdinal("Updated"))
-                                    ? (DateTime?)null
-                                    : reader.GetDateTime(reader.GetOrdinal("Updated"))
-                            });
+                                products.Add(new Product
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("ID")),
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                    Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
+                                    Category = reader.GetString(reader.GetOrdinal("Category")),
+                                    Created = reader.GetDateTime(reader.GetOrdinal("Created")),
+                                    LastUpdated = reader.IsDBNull(reader.GetOrdinal("Updated"))
+                                        ? (DateTime?)null
+                                        : reader.GetDateTime(reader.GetOrdinal("Updated"))
+                                });
+                            }
                         }
                     }
                 }
-            }
 
-            return products;
+                return products;
+            }
         }
 
         public void UpdateProduct(Product product)
@@ -182,16 +180,13 @@ namespace HenriksHobbyLager.Database
                 {
                     command.Connection = connection;
                     command.CommandText =
-                        "UPDATE Products SET Name = @Name, Price = @Price, Stock = @Stock, Category = @Category, Updated = @Updated WHERE ID = @ID;";
+                        "UPDATE Products SET Name = @Name, Price = @Price, Stock = @Stock, Category = @Category, Updated = CURRENT_TIMESTAMP WHERE ID = @ID;";
                     command.Parameters.AddWithValue("@ID", product.Id);
                     command.Parameters.AddWithValue("@Name", product.Name);
                     command.Parameters.AddWithValue("@Price", product.Price);
                     command.Parameters.AddWithValue("@Stock", product.Stock);
                     command.Parameters.AddWithValue("@Category", product.Category);
-                    command.Parameters.AddWithValue("@Updated", DateTime.Now);
                     command.ExecuteNonQuery();
-
-                    Console.WriteLine("Produkt uppdaterad!");
                 }
             }
         }
@@ -207,8 +202,6 @@ namespace HenriksHobbyLager.Database
                     command.CommandText = "DELETE FROM Products WHERE ID = @ID;";
                     command.Parameters.AddWithValue("@ID", id);
                     command.ExecuteNonQuery();
-
-                    Console.WriteLine("Produkt borttagen!");
                 }
             }
         }

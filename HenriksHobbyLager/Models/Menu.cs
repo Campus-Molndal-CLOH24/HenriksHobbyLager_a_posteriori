@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-using System.Data;
 using System.Diagnostics;
 using System.Xml.Linq;
 
@@ -17,7 +16,7 @@ namespace HenriksHobbyLager.Models
     internal class Menu
     {
         private readonly IDatabase _database;
-        
+
         public Menu(IDatabase database)
         {
             _database = database;
@@ -42,14 +41,27 @@ namespace HenriksHobbyLager.Models
 
                 // Switch är tydligen bättre än if-else enligt Google
                 switch (choice)
-                { 
-                    case "1": ShowAllProducts(); break; 
-                    case "2": AddProduct(); break; 
-                    case "3": UpdateProduct(); break;
-                    case "4": DeleteAProduct(); break;
-                    case "5": SearchProducts(); break;
-                    case "6": return; 
-                    default: Console.WriteLine("Ogiltigt val! Är du säker på att du tryckte på rätt knapp?"); break;
+                {
+                    case "1":
+                        ShowAllProducts();
+                        break;
+                    case "2":
+                        AddProduct();
+                        break;
+                    case "3":
+                        UpdateProduct();
+                        break;
+                    case "4":
+                        DeleteAProduct();
+                        break;
+                    case "5":
+                        SearchProducts();
+                        break;
+                    case "6":
+                        return; 
+                    default:
+                        Console.WriteLine("Ogiltigt val! Är du säker på att du tryckte på rätt knapp?");
+                        break;
                 }
 
                 Console.WriteLine("\nTryck på valfri tangent för att fortsätta... (helst inte ESC)");
@@ -67,7 +79,7 @@ namespace HenriksHobbyLager.Models
             }
             foreach (var product in products)
             {
-                DisplayProduct(product);
+                Console.WriteLine($"ID: {product.Id} - {product.Name} - {product.Price} kr - {product.Stock} st - {product.Category} - {product.Created} - {product.LastUpdated}");
             }
         }
         private void AddProduct()
@@ -92,12 +104,15 @@ namespace HenriksHobbyLager.Models
             Console.Write("Kategori: ");
             string category = Console.ReadLine();
 
+            var created = DateTime.Now;
+            
             var product = new Product
             {
                 Name = name,
                 Price = price,
                 Stock = stock,
-                Category = category
+                Category = category,
+                Created = created
             };
             _database.AddProduct(product);
             Console.WriteLine("Produkt tillagd!");
@@ -105,16 +120,25 @@ namespace HenriksHobbyLager.Models
         private void DeleteAProduct()
         {
             Console.Write("Ange ID på produkten du vill ta bort: ");
-            if (int.TryParse(Console.ReadLine(), out int id))
+            if (!int.TryParse(Console.ReadLine(), out int id))
             {
-                _database.DeleteProduct(id);
-                Console.WriteLine("Produkt borttagen!");
+                Console.WriteLine("Ogiltigt ID!");
+                return;
             }
-            else
+            var product = _database.GetProductById(id);
+            if (product == null)
             {
-                Console.Write("Ogiltigt ID!");
-            }
-
+                Console.Write("Produkten finns inte i databasen!");
+                return;
+            }  
+            _database.DeleteProduct(id);
+            Console.WriteLine("Produkt borttagen!");
+            
+         
+               
+         
+                
+           
         }
 
         private void UpdateProduct()
@@ -125,13 +149,14 @@ namespace HenriksHobbyLager.Models
                 Console.WriteLine("Ogiltigt ID!");
                 return;
             }
-
             var product = _database.GetProductById(id);
             if (product == null)
             {
                 Console.Write("Produkten finns inte i databasen!");
                 return;
             }
+
+
 
             Console.Write("Nytt namn (lämna tomt om du vill behålla det gamla): ");
             string newName = Console.ReadLine();
@@ -149,35 +174,38 @@ namespace HenriksHobbyLager.Models
             product.Price = decimal.TryParse(newPriceInput, out decimal newPrice) ? newPrice : product.Price;
             product.Stock = int.TryParse(newStockInput, out int newStock) ? newStock : product.Stock;
             product.Category = string.IsNullOrEmpty(newCategory) ? product.Category : newCategory;
+            product.LastUpdated = DateTime.Now;
 
             _database.UpdateProduct(product);
             Console.Write("Produkt uppdaterad!");
 
 
         }
+
         private void SearchProducts()
         {
             Console.Write("Sök efter produkt: ");
-            var search = Console.ReadLine()?.ToLower();
+            string search = Console.ReadLine();
             var products = _database.GetProductByName(search);
             if (products == null || !products.Any())
             {
-                Console.WriteLine("Inga produkter matchade din sökning.");
+                Console.WriteLine("Inga produkter hittades!");
                 return;
             }
 
             foreach (var product in products)
             {
-                DisplayProduct(product);
+                Console.WriteLine($"ID: {product.Id}, Namn: {product.Name}, Pris: {product.Price}, Lager: {product.Stock}, Kategori: {product.Category}, Skapad: {product.Created}, Uppdaterad: {product.LastUpdated}");
             }
         }
 
-        private static void DisplayProduct(Product product)
-        {
-            Console.WriteLine($"ID: {product.Id}, Namn: {product.Name}, Pris: {product.Price}, Lager: {product.Stock}, Kategori: {product.Category}, Skapad: {product.Created}, Uppdaterad: {product.LastUpdated}");
-        }
     }
-}
+       
+    
+
+
+        
+    }
 
 
        
