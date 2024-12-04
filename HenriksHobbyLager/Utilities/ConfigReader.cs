@@ -13,15 +13,15 @@ namespace HenriksHobbyLager.Utilities
                     split => split[0].Trim(),
                     split => split.Length > 1 ? split[1].Trim() : string.Empty // Handle lines without a value
                 );
-
+            
             // Get database type
             string dbType = configLines["type"];
-
-            // Get connection string based on the database type
-            string connectionString = dbType == "SQL"
-                ? configLines["sql_connection"]
-                : configLines["mongo_connection"];
-
+            string connectionString = dbType switch
+            {
+                "SQL" => configLines["sql_connection"],
+                "NoSQL" => configLines["mongo_connection"],
+                _ => throw new Exception($"Okänd databas typ: {dbType}")
+            };
             return (dbType, connectionString);
         }
     }

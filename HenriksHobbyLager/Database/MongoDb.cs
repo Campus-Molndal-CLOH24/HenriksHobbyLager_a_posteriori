@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace HenriksHobbyLager.Database
 {
-    public class MongoDbDatabase : IRepository<Product>
+    public class MongoDb : IRepository<Product>
     {
         private IMongoDatabase _database;
 

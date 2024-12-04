@@ -1,17 +1,14 @@
 ﻿
-
-using HenriksHobbyLager.Models;
-
 namespace HenriksHobbyLager.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<T> // DatabasLogik
     {
-        IEnumerable<T> GetAll();
+        void Connect(string connectionString);
         void Add(T entity);
+        IEnumerable<T> GetAll();
+        T GetById(int id);
+        IEnumerable<T> Search(string searchTerm);
         void Update(T entity);
         void Delete(int id);
-        IEnumerable<T> Search(string searchTerm); // Lägg till sökmetoden
-        Product GetById(int result);
     }
-    
 }

@@ -1,10 +1,14 @@
-﻿using HenriksHobbyLager.Interfaces;
+﻿using System.Data;
+using HenriksHobbyLager.Interfaces;
 
 namespace HenriksHobbyLager.Models
 {
     public class ConsoleMenuHandler
     {
         private readonly IProductFacade _productFacade;
+        
+        private readonly DbType dbType;
+        
 
         public ConsoleMenuHandler(IProductFacade productFacade)
         {
@@ -15,7 +19,7 @@ namespace HenriksHobbyLager.Models
         {
             while (true)
             {
-                Console.Clear();
+                Console.WriteLine(dbType.GetType()  );
                 Console.WriteLine("=== Henriks HobbyLager™ 2.0 ===");
                 Console.WriteLine("1. Visa alla produkter");
                 Console.WriteLine("2. Lägg till produkt");
@@ -36,27 +40,13 @@ namespace HenriksHobbyLager.Models
         {
             switch (choice)
             {
-                case "1":
-                    ShowAllProducts();
-                    break;
-                case "2":
-                    AddProduct();
-                    break;
-                case "3":
-                    UpdateProduct();
-                    break;
-                case "4":
-                    DeleteProduct();
-                    break;
-                case "5":
-                    SearchProducts();
-                    break;
-                case "6":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    Console.WriteLine("Ogiltigt val, försök igen.");
-                    break;
+                case "1":ShowAllProducts();break;
+                case "2":AddProduct();break;
+                case "3":UpdateProduct();break;
+                case "4":DeleteProduct();break;
+                case "5":SearchProducts();break;
+                case "6":Environment.Exit(0);break;
+                default:Console.WriteLine("Ogiltigt val, försök igen.");break;
             }
         }
 
@@ -71,9 +61,10 @@ namespace HenriksHobbyLager.Models
 
             foreach (var product in products)
             {
-                Console.WriteLine($"{product.Id}: {product.Name} - {product.Price} kr - {product.Stock} st");
+                PrintProducts(product);
             }
         }
+
 
         private void AddProduct()
         {
@@ -175,8 +166,12 @@ namespace HenriksHobbyLager.Models
 
             foreach (var product in results)
             {
-                Console.WriteLine($"{product.Id}: {product.Name} - {product.Price} kr - {product.Stock} st");
+                PrintProducts(product);
             }
+        }
+        private static void PrintProducts(Product product)
+        {
+            Console.WriteLine($"ID: {product.Id}, Namn: {product.Name}, Pris: {product.Price}kr, Lagerantal: {product.Stock}st, Kategori: {product.Category}");
         }
     }
 }

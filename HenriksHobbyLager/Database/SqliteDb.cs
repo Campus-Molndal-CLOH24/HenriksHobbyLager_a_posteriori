@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HenriksHobbyLager.Database
 {
-    public class SQLiteDatabase : IRepository<Product>
+    public class SqliteDb : IRepository<Product>
     {
         private string _connectionString;
 

@@ -3,15 +3,13 @@ using HenriksHobbyLager.Models;
 
 namespace HenriksHobbyLager.Repositories
 {
-    public class Database : IRepository<Product>
+    public class ProductDatabase : IRepository<Product> // ProductDatabase hanterar databaskommunikation och delegerar anrop till den faktiska databasimplementationen (t.ex. SQLite eller MongoDB).
     {
         private readonly IRepository<Product> _database;
-
-        public Database(IRepository<Product> database)
+        public ProductDatabase(IRepository<Product> database)
         {
             _database = database;
         }
-
         public void Connect(string connectionString) => _database.Connect(connectionString);
         public IEnumerable<Product> GetAll() => _database.GetAll();
         public Product GetById(int id) => _database.GetById(id);

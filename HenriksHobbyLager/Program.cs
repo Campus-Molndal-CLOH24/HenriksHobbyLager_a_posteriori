@@ -1,4 +1,5 @@
 using HenriksHobbyLager;
+using HenriksHobbyLager.Utilities;
 
 namespace RefactoringExercise
 {
@@ -6,7 +7,7 @@ namespace RefactoringExercise
     {
         static void Main(string[] args)
         {
-            Startup.Initialize(); // Bara meny returneras
+            Startup.Initialize();
         }
     }
 }

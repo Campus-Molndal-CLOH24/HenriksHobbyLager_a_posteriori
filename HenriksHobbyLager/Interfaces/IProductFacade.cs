@@ -2,8 +2,8 @@
 
 namespace HenriksHobbyLager.Interfaces
 {
-    public interface IProductFacade
-    {
+    public interface IProductFacade // Console Menu logik (affärslogik). Separerar Affärslogik från Datbaslogik,
+{
         IEnumerable<Product> GetAllProducts();
         void CreateProduct(Product product);
         void UpdateProduct(Product product);
