@@ -1,4 +1,3 @@
-using HenriksHobbyLager.Database;
 using HenriksHobbyLager.Database.Repositories;
 using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;

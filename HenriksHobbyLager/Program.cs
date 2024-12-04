@@ -1,7 +1,6 @@
-using HenriksHobbyLager;
 using HenriksHobbyLager.Utilities;
 
-namespace RefactoringExercise
+namespace HenriksHobbyLager
 {
     public class Program
     {
