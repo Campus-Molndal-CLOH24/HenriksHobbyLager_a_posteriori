@@ -1,10 +1,12 @@
 ﻿using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HenriksHobbyLager.Database
 {
-    public class MongoDbDatabase : IDatabase
+    public class MongoDbDatabase : IRepository<Product>
     {
         private IMongoDatabase _database;
 
@@ -12,16 +14,9 @@ namespace HenriksHobbyLager.Database
         {
             var client = new MongoClient(connectionString);
             _database = client.GetDatabase("HenriksHobbyLager");
-            Console.WriteLine("Ansluten till MongoDB");
-
         }
 
-        public void CreateTable()
-        {
-            Console.WriteLine("MongoDB behöver ingen tabell, din scrublord!");
-        }
-
-        public void AddProduct(Product product)
+        public void Add(Product product)
         {
             var collection = _database.GetCollection<Product>("Products");
             var maxId = collection.AsQueryable().OrderByDescending(p => p.Id).FirstOrDefault()?.Id ?? 0;
@@ -29,33 +24,33 @@ namespace HenriksHobbyLager.Database
             collection.InsertOne(product);
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> GetAll()
         {
             var collection = _database.GetCollection<Product>("Products");
             return collection.Find(FilterDefinition<Product>.Empty).ToList();
         }
 
-        public Product GetProductById(int id)
+        public Product GetById(int id)
         {
             var collection = _database.GetCollection<Product>("Products");
             return collection.Find(p => p.Id == id).FirstOrDefault();
         }
-        public IEnumerable<Product> GetProductByName(string search)
+
+        public IEnumerable<Product> Search(string searchTerm)
         {
             var collection = _database.GetCollection<Product>("Products");
-            var filter = Builders<Product>.Filter.Regex("Name", new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            var filter = Builders<Product>.Filter.Regex("Name", new MongoDB.Bson.BsonRegularExpression(searchTerm, "i"));
             return collection.Find(filter).ToList();
-
         }
 
-        public void UpdateProduct(Product product)
+        public void Update(Product product)
         {
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, product.Id);
             collection.ReplaceOne(filter, product);
         }
 
-        public void DeleteProduct(int id)
+        public void Delete(int id)
         {
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, id);
@@ -63,4 +58,3 @@ namespace HenriksHobbyLager.Database
         }
     }
 }
-
