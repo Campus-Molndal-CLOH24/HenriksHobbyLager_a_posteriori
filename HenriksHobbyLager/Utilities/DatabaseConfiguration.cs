@@ -1,10 +1,11 @@
 using HenriksHobbyLager.Database;
 using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
+using HenriksHobbyLager.UI;
 
 namespace HenriksHobbyLager.Utilities
 {
-    public static class DbInitializer
+    public static class DatabaseConfiguration
     {
         public static void Initialize()
         {
@@ -14,14 +15,14 @@ namespace HenriksHobbyLager.Utilities
 
             if (dbType == "SQL")
             {
-                var sqliteDatabase = new SqliteDb();
+                var sqliteDatabase = new SqliteProductRepository();
                 sqliteDatabase.Connect(connectionString);
                 database = sqliteDatabase;
                 Console.WriteLine("Anslutning till SQLite lyckades.");
             }
             else if (dbType == "NoSQL")
             {
-                var mongoDatabase = new MongoDb();
+                var mongoDatabase = new MongoProductRepository();
                 mongoDatabase.Connect(connectionString);
                 database = mongoDatabase;
                 Console.WriteLine("Anslutning till MongoDB lyckades.");
@@ -31,9 +32,9 @@ namespace HenriksHobbyLager.Utilities
                 throw new Exception($"Okänd databas typ: {dbType}");
             }
 
-            IProductFacade productFacade = new ProductFacade(database);
+            IProductService productService = new ProductService(database);
             // Skicka databasens typ till ConsoleMenuHandler
-            var consoleMenuHandler = new ConsoleMenuHandler(productFacade, dbType);
+            var consoleMenuHandler = new ConsoleMenuHandler(productService, dbType);
             consoleMenuHandler.ShowMainMenu();
         }
     }

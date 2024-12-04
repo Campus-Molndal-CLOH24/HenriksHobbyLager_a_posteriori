@@ -1,16 +1,16 @@
-﻿using System.Data;
-using HenriksHobbyLager.Interfaces;
+﻿using HenriksHobbyLager.Interfaces;
+using HenriksHobbyLager.Models;
 
-namespace HenriksHobbyLager.Models
+namespace HenriksHobbyLager.UI
 {
     public class ConsoleMenuHandler
     {
-        private readonly IProductFacade _productFacade;
+        private readonly IProductService _productService;
         private readonly string _databaseType; // Egenskap för att hålla reda på databastypen
         
-        public ConsoleMenuHandler(IProductFacade productFacade, string databaseType)
+        public ConsoleMenuHandler(IProductService productService, string databaseType)
         {
-            _productFacade = productFacade;
+            _productService = productService;
             _databaseType = databaseType;
         }
 
@@ -52,7 +52,7 @@ namespace HenriksHobbyLager.Models
 
         private void ShowAllProducts()
         {
-            var products = _productFacade.GetAllProducts();
+            var products = _productService.GetAllProducts();
             if (!products.Any())
             {
                 Console.WriteLine("Inga produkter hittades.");
@@ -97,7 +97,7 @@ namespace HenriksHobbyLager.Models
                 Created = DateTime.Now
             };
 
-            _productFacade.CreateProduct(product);
+            _productService.CreateProduct(product);
             Console.WriteLine("Produkten har lagts till.");
         }
 
@@ -122,7 +122,7 @@ namespace HenriksHobbyLager.Models
             Console.Write("Ny kategori (lämna tomt för att behålla): ");
             string category = Console.ReadLine();
 
-            var product = _productFacade.GetProduct(id);
+            var product = _productService.GetProduct(id);
             if (product == null)
             {
                 Console.WriteLine("Produkten hittades inte.");
@@ -135,7 +135,7 @@ namespace HenriksHobbyLager.Models
             product.Category = string.IsNullOrEmpty(category) ? product.Category : category;
             product.Updated = DateTime.Now;
 
-            _productFacade.UpdateProduct(product);
+            _productService.UpdateProduct(product);
             Console.WriteLine("Produkten har uppdaterats.");
         }
 
@@ -148,7 +148,7 @@ namespace HenriksHobbyLager.Models
                 return;
             }
 
-            _productFacade.DeleteProduct(id);
+            _productService.DeleteProduct(id);
             Console.WriteLine("Produkten har tagits bort.");
         }
 
@@ -157,7 +157,7 @@ namespace HenriksHobbyLager.Models
             Console.Write("Sökterm: ");
             string searchTerm = Console.ReadLine();
 
-            var results = _productFacade.SearchProducts(searchTerm);
+            var results = _productService.SearchProducts(searchTerm);
             if (!results.Any())
             {
                 Console.WriteLine("Inga produkter hittades.");

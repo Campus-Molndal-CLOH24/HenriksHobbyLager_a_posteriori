@@ -4,7 +4,7 @@ using Microsoft.Data.Sqlite;
 
 namespace HenriksHobbyLager.Database
 {
-    public class SqliteDb : IRepository<Product>
+    public class SqliteProductRepository : IRepository<Product>
     {
         private string _connectionString;
 

@@ -2,10 +2,10 @@ using HenriksHobbyLager.Interfaces;
 
 namespace HenriksHobbyLager.Models
 {
-    public class ProductFacade : IProductFacade // mellanhand mellan databasen och resten av applikationen,  säkerställer att andra delar av applikationen inte behöver hantera databaslogik direkt.
+    public class ProductService : IProductService // mellanhand mellan databasen och resten av applikationen,  säkerställer att andra delar av applikationen inte behöver hantera databaslogik direkt.
     {
         private readonly IRepository<Product> _repository;
-        public ProductFacade(IRepository<Product> repository) => _repository = repository;
+        public ProductService(IRepository<Product> repository) => _repository = repository;
         public IEnumerable<Product> GetAllProducts() => _repository.GetAll();
         public void CreateProduct(Product product) => _repository.Add(product);
         public void UpdateProduct(Product product) => _repository.Update(product);
