@@ -1,6 +1,8 @@
 using HenriksHobbyLager.Database;
+using HenriksHobbyLager.Database.Repositories;
 using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
+using HenriksHobbyLager.Services;
 using HenriksHobbyLager.UI;
 
 namespace HenriksHobbyLager.Utilities
@@ -22,7 +24,7 @@ namespace HenriksHobbyLager.Utilities
             }
             else if (dbType == "NoSQL")
             {
-                var mongoDatabase = new MongoProductRepository();
+                var mongoDatabase = new MongoDbProductRepository();
                 mongoDatabase.Connect(connectionString);
                 database = mongoDatabase;
                 Console.WriteLine("Anslutning till MongoDB lyckades.");

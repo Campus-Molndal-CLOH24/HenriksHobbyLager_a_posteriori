@@ -1,6 +1,7 @@
 using HenriksHobbyLager.Interfaces;
+using HenriksHobbyLager.Models;
 
-namespace HenriksHobbyLager.Models
+namespace HenriksHobbyLager.Services
 {
     public class ProductService : IProductService // mellanhand mellan databasen och resten av applikationen,  säkerställer att andra delar av applikationen inte behöver hantera databaslogik direkt.
     {

@@ -2,7 +2,7 @@
 using HenriksHobbyLager.Models;
 using Microsoft.Data.Sqlite;
 
-namespace HenriksHobbyLager.Database
+namespace HenriksHobbyLager.Database.Repositories
 {
     public class SqliteProductRepository : IRepository<Product>
     {

@@ -1,12 +1,10 @@
 ﻿using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
 using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace HenriksHobbyLager.Database
+namespace HenriksHobbyLager.Database.Repositories
 {
-    public class MongoProductRepository : IRepository<Product>
+    public class MongoDbProductRepository : IRepository<Product>
     {
         private IMongoDatabase _database;
 
