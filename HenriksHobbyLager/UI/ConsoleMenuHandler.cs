@@ -36,21 +36,21 @@ namespace HenriksHobbyLager.UI
             }
         }
 
-        private void HandleMenuChoice(string choice)
+        private async Task HandleMenuChoice(string choice)
         {
             switch (choice)
             {
-                case "1":ShowAllProducts();break;
-                case "2":AddProduct();break;
-                case "3":UpdateProduct();break;
-                case "4":DeleteProduct();break;
-                case "5":SearchProducts();break;
+                case "1":await ShowAllProducts();break;
+                case "2":await AddProduct();break;
+                case "3":await UpdateProduct();break;
+                case "4":await DeleteProduct();break;
+                case "5":await SearchProducts();break;
                 case "6":Environment.Exit(0);break;
                 default:Console.WriteLine("Ogiltigt val, försök igen.");break;
             }
         }
 
-        private async void ShowAllProducts()
+        private async Task ShowAllProducts()
         {
             var products = await _productService.GetAllProducts();
             if (!products.Any())
@@ -66,7 +66,7 @@ namespace HenriksHobbyLager.UI
         }
 
 
-        private void AddProduct()
+        private Task AddProduct()
         {
             Console.Write("Namn: ");
             string name = Console.ReadLine();
@@ -75,14 +75,14 @@ namespace HenriksHobbyLager.UI
             if (!decimal.TryParse(Console.ReadLine(), out var price))
             {
                 Console.WriteLine("Felaktig inmatning för pris.");
-                return;
+                return Task.CompletedTask;
             }
 
             Console.Write("Lagersaldo: ");
             if (!int.TryParse(Console.ReadLine(), out var stock))
             {
                 Console.WriteLine("Felaktig inmatning för lagersaldo.");
-                return;
+                return Task.CompletedTask;
             }
 
             Console.Write("Kategori: ");
@@ -99,9 +99,10 @@ namespace HenriksHobbyLager.UI
 
             _productService.CreateProduct(product);
             Console.WriteLine("Produkten har lagts till.");
+            return Task.CompletedTask;
         }
 
-        private async void UpdateProduct()
+        private async Task UpdateProduct()
         {
             Console.Write("Ange produktens ID: ");
             if (!int.TryParse(Console.ReadLine(), out var id))
@@ -139,20 +140,21 @@ namespace HenriksHobbyLager.UI
             Console.WriteLine("Produkten har uppdaterats.");
         }
 
-        private void DeleteProduct()
+        private Task DeleteProduct()
         {
             Console.Write("Ange produktens ID: ");
             if (!int.TryParse(Console.ReadLine(), out var id))
             {
                 Console.WriteLine("Felaktigt ID.");
-                return;
+                return Task.CompletedTask;
             }
 
             _productService.DeleteProduct(id);
             Console.WriteLine("Produkten har tagits bort.");
+            return Task.CompletedTask;
         }
 
-        private async void SearchProducts()
+        private async Task SearchProducts()
         {
             Console.Write("Sökterm: ");
             string searchTerm = Console.ReadLine();

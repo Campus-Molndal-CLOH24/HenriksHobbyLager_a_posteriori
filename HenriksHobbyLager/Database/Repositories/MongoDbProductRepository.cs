@@ -19,7 +19,7 @@ namespace HenriksHobbyLager.Database.Repositories
             var collection = _database.GetCollection<Product>("Products");
             var maxId = collection.AsQueryable().OrderByDescending(p => p.Id).FirstOrDefault()?.Id ?? 0;
             product.Id = maxId + 1;
-            collection.InsertOne(product);
+            await collection.InsertOneAsync(product);
         }
 
         public async Task<IEnumerable<Product>> GetAll()
@@ -45,14 +45,14 @@ namespace HenriksHobbyLager.Database.Repositories
         {
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, product.Id);
-            collection.ReplaceOne(filter, product);
+            await collection.ReplaceOneAsync(filter, product);
         }
 
         public async Task Delete(int id)
         {
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, id);
-            collection.DeleteOne(filter);
+            await collection.DeleteOneAsync(filter);
         }
     }
 }
