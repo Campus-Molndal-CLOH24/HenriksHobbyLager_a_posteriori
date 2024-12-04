@@ -7,7 +7,6 @@ namespace HenriksHobbyLager.Database
     public class AppDbContext : DbContext // Entityframework Core integration
     {
         public DbSet<Product> Products { get; set; }
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public IEnumerable<Product> GetAllProducts() => Products.ToList();
         public Product GetProductById(int id) => Products.Find(id);
         public IEnumerable<Product> GetProductByName(string searchTerm) => Products.Where(p => p.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
