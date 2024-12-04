@@ -6,20 +6,20 @@ namespace HenriksHobbyLager.Models
     public class ConsoleMenuHandler
     {
         private readonly IProductFacade _productFacade;
+        private readonly string _databaseType; // Egenskap för att hålla reda på databastypen
         
-        private readonly DbType dbType;
-        
-
-        public ConsoleMenuHandler(IProductFacade productFacade)
+        public ConsoleMenuHandler(IProductFacade productFacade, string databaseType)
         {
             _productFacade = productFacade;
+            _databaseType = databaseType;
         }
 
         public void ShowMainMenu()
         {
             while (true)
             {
-                Console.WriteLine(dbType.GetType()  );
+                Console.Clear();
+                Console.WriteLine($"Databas: {_databaseType}"); // Skriv ut databastypen
                 Console.WriteLine("=== Henriks HobbyLager™ 2.0 ===");
                 Console.WriteLine("1. Visa alla produkter");
                 Console.WriteLine("2. Lägg till produkt");

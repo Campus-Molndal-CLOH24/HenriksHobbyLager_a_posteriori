@@ -14,7 +14,6 @@ namespace HenriksHobbyLager.Utilities
 
             if (dbType == "SQL")
             {
-                // Använd SQLite-databasen
                 var sqliteDatabase = new SqliteDb();
                 sqliteDatabase.Connect(connectionString);
                 database = sqliteDatabase;
@@ -22,7 +21,6 @@ namespace HenriksHobbyLager.Utilities
             }
             else if (dbType == "NoSQL")
             {
-                // Använd MongoDB
                 var mongoDatabase = new MongoDb();
                 mongoDatabase.Connect(connectionString);
                 database = mongoDatabase;
@@ -33,14 +31,9 @@ namespace HenriksHobbyLager.Utilities
                 throw new Exception($"Okänd databas typ: {dbType}");
             }
 
-            // Skapa en instans av ProductDatabase (tidigare Database)
-            var repository = new Repository(database);
-
-            // Använd ProductFacade för affärslogik
-            IProductFacade productFacade = new ProductFacade(repository);
-
-            // Starta menyhanteraren
-            var consoleMenuHandler = new ConsoleMenuHandler(productFacade);
+            IProductFacade productFacade = new ProductFacade(database);
+            // Skicka databasens typ till ConsoleMenuHandler
+            var consoleMenuHandler = new ConsoleMenuHandler(productFacade, dbType);
             consoleMenuHandler.ShowMainMenu();
         }
     }
