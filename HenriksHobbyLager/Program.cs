@@ -7,7 +7,7 @@ namespace RefactoringExercise
     {
         static void Main(string[] args)
         {
-            Startup.Initialize();
+            DbInitializer.Initialize();
         }
     }
 }

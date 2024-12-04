@@ -4,7 +4,7 @@ using HenriksHobbyLager.Models;
 
 namespace HenriksHobbyLager.Utilities
 {
-    public static class Startup
+    public static class DbInitializer
     {
         public static void Initialize()
         {
