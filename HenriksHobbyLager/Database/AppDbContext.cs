@@ -18,7 +18,7 @@ namespace HenriksHobbyLager.Database
         public void AddProduct(Product product)
         {
             Products.Add(product);
-            SaveChanges(); // Från EnityFramework
+            SaveChanges(); // Från EntityFramework
         }
 
         public void UpdateProduct(Product product)

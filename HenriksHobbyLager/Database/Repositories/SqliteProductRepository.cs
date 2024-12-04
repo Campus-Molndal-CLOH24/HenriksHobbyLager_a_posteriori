@@ -13,9 +13,10 @@ namespace HenriksHobbyLager.Database.Repositories
             _connectionString = connectionString;
         }
 
-        public void Add(Product product)
+        public async Task Add(Product product)
         {
-            using var connection = new SqliteConnection(_connectionString);
+            await using var connection = new SqliteConnection(_connectionString);
+            await connection .OpenAsync();
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = "INSERT INTO Products (Name, Price, Stock, Category, Created) VALUES (@Name, @Price, @Stock, @Category, @Created);";
@@ -24,17 +25,18 @@ namespace HenriksHobbyLager.Database.Repositories
             command.Parameters.AddWithValue("@Stock", product.Stock);
             command.Parameters.AddWithValue("@Category", product.Category);
             command.Parameters.AddWithValue("@Created", product.Created);
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
         }
 
-        public IEnumerable<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
             var products = new List<Product>();
-            using var connection = new SqliteConnection(_connectionString);
+            await using var connection = new SqliteConnection(_connectionString);
+            await connection.OpenAsync();
             connection.Open();
             var command = new SqliteCommand("SELECT * FROM Products;", connection);
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
             {
                 products.Add(new Product
                 {
@@ -50,14 +52,14 @@ namespace HenriksHobbyLager.Database.Repositories
             return products;
         }
 
-        public Product GetById(int id)
+        public async Task<Product> GetById(int id)
         {
             using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
+            await connection.OpenAsync();
             var command = new SqliteCommand("SELECT * FROM Products WHERE ID = @ID;", connection);
             command.Parameters.AddWithValue("@ID", id);
-            using var reader = command.ExecuteReader();
-            return reader.Read()
+            using var reader = await command.ExecuteReaderAsync();
+            return await reader.ReadAsync()
                 ? new Product
                 {
                     Id = reader.GetInt32(reader.GetOrdinal("ID")),
@@ -71,15 +73,15 @@ namespace HenriksHobbyLager.Database.Repositories
                 : null;
         }
 
-        public IEnumerable<Product> Search(string searchTerm)
+        public async Task<IEnumerable<Product>> Search(string searchTerm)
         {
             var products = new List<Product>();
-            using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
+            await using var connection = new SqliteConnection(_connectionString);
+            await connection.OpenAsync();
             var command = new SqliteCommand("SELECT * FROM Products WHERE Name LIKE @search OR Category LIKE @search;", connection);
             command.Parameters.AddWithValue("@search", $"%{searchTerm}%");
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
+            await using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
             {
                 products.Add(new Product
                 {
@@ -95,10 +97,10 @@ namespace HenriksHobbyLager.Database.Repositories
             return products;
         }
 
-        public void Update(Product product)
+        public async Task Update(Product product)
         {
             using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
+            await connection.OpenAsync();
             var command = connection.CreateCommand();
             command.CommandText = "UPDATE Products SET Name = @Name, Price = @Price, Stock = @Stock, Category = @Category, Updated = CURRENT_TIMESTAMP WHERE ID = @ID;";
             command.Parameters.AddWithValue("@ID", product.Id);
@@ -106,16 +108,16 @@ namespace HenriksHobbyLager.Database.Repositories
             command.Parameters.AddWithValue("@Price", product.Price);
             command.Parameters.AddWithValue("@Stock", product.Stock);
             command.Parameters.AddWithValue("@Category", product.Category);
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             using var connection = new SqliteConnection(_connectionString);
-            connection.Open();
+            await connection.OpenAsync();
             var command = new SqliteCommand("DELETE FROM Products WHERE ID = @ID;", connection);
             command.Parameters.AddWithValue("@ID", id);
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
         }
     }
 }

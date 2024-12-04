@@ -50,9 +50,9 @@ namespace HenriksHobbyLager.UI
             }
         }
 
-        private void ShowAllProducts()
+        private async void ShowAllProducts()
         {
-            var products = _productService.GetAllProducts();
+            var products = await _productService.GetAllProducts();
             if (!products.Any())
             {
                 Console.WriteLine("Inga produkter hittades.");
@@ -101,7 +101,7 @@ namespace HenriksHobbyLager.UI
             Console.WriteLine("Produkten har lagts till.");
         }
 
-        private void UpdateProduct()
+        private async void UpdateProduct()
         {
             Console.Write("Ange produktens ID: ");
             if (!int.TryParse(Console.ReadLine(), out var id))
@@ -122,7 +122,7 @@ namespace HenriksHobbyLager.UI
             Console.Write("Ny kategori (lämna tomt för att behålla): ");
             string category = Console.ReadLine();
 
-            var product = _productService.GetProduct(id);
+            var product = await _productService.GetProduct(id);
             if (product == null)
             {
                 Console.WriteLine("Produkten hittades inte.");
@@ -152,12 +152,12 @@ namespace HenriksHobbyLager.UI
             Console.WriteLine("Produkten har tagits bort.");
         }
 
-        private void SearchProducts()
+        private async void SearchProducts()
         {
             Console.Write("Sökterm: ");
             string searchTerm = Console.ReadLine();
 
-            var results = _productService.SearchProducts(searchTerm);
+            var results = await _productService.SearchProducts(searchTerm);
             if (!results.Any())
             {
                 Console.WriteLine("Inga produkter hittades.");

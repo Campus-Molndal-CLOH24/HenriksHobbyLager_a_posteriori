@@ -14,7 +14,7 @@ namespace HenriksHobbyLager.Database.Repositories
             _database = client.GetDatabase("HenriksHobbyLager");
         }
 
-        public void Add(Product product)
+        public async Task Add(Product product)
         {
             var collection = _database.GetCollection<Product>("Products");
             var maxId = collection.AsQueryable().OrderByDescending(p => p.Id).FirstOrDefault()?.Id ?? 0;
@@ -22,33 +22,33 @@ namespace HenriksHobbyLager.Database.Repositories
             collection.InsertOne(product);
         }
 
-        public IEnumerable<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
             var collection = _database.GetCollection<Product>("Products");
             return collection.Find(FilterDefinition<Product>.Empty).ToList();
         }
 
-        public Product GetById(int id)
+        public async Task<Product> GetById(int id)
         {
             var collection = _database.GetCollection<Product>("Products");
             return collection.Find(p => p.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Product> Search(string searchTerm)
+        public async Task<IEnumerable<Product>> Search(string searchTerm)
         {
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Regex("Name", new MongoDB.Bson.BsonRegularExpression(searchTerm, "i"));
             return collection.Find(filter).ToList();
         }
 
-        public void Update(Product product)
+        public async Task Update(Product product)
         {
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, product.Id);
             collection.ReplaceOne(filter, product);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var collection = _database.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Eq(p => p.Id, id);
