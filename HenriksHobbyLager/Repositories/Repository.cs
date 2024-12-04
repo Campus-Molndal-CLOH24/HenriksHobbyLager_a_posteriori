@@ -1,12 +1,11 @@
 using HenriksHobbyLager.Interfaces;
-using HenriksHobbyLager.Models;
 
-namespace HenriksHobbyLager.Repositories
+namespace HenriksHobbyLager.Models
 {
-    public class ProductDatabase : IRepository<Product> // ProductDatabase hanterar databaskommunikation och delegerar anrop till den faktiska databasimplementationen (t.ex. SQLite eller MongoDB).
+    public class Repository : IRepository<Product> // ProductDatabase hanterar databaskommunikation och delegerar anrop till den faktiska databasimplementationen (t.ex. SQLite eller MongoDB).
     {
         private readonly IRepository<Product> _database;
-        public ProductDatabase(IRepository<Product> database)
+        public Repository(IRepository<Product> database)
         {
             _database = database;
         }

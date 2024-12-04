@@ -1,7 +1,6 @@
 using HenriksHobbyLager.Interfaces;
-using HenriksHobbyLager.Models;
 
-namespace HenriksHobbyLager
+namespace HenriksHobbyLager.Models
 {
     public class ProductFacade : IProductFacade // mellanhand mellan databasen och resten av applikationen,  säkerställer att andra delar av applikationen inte behöver hantera databaslogik direkt.
     {

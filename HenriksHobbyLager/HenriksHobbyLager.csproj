@@ -27,8 +27,4 @@
     <None Include="bin\Debug\net9.0\HenriksHobbyLager.db" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>

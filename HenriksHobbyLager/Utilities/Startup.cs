@@ -1,7 +1,6 @@
 using HenriksHobbyLager.Database;
 using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
-using HenriksHobbyLager.Repositories;
 
 namespace HenriksHobbyLager.Utilities
 {
@@ -35,7 +34,7 @@ namespace HenriksHobbyLager.Utilities
             }
 
             // Skapa en instans av ProductDatabase (tidigare Database)
-            var repository = new ProductDatabase(database);
+            var repository = new Repository(database);
 
             // Använd ProductFacade för affärslogik
             IProductFacade productFacade = new ProductFacade(repository);

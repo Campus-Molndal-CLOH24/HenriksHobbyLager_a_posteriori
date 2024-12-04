@@ -1,7 +1,6 @@
 ﻿using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
 using Microsoft.Data.Sqlite;
-using System.Collections.Generic;
 
 namespace HenriksHobbyLager.Database
 {

@@ -1,4 +1,3 @@
-using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
 using Microsoft.EntityFrameworkCore;
 
