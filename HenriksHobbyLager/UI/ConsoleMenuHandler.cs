@@ -71,18 +71,25 @@ namespace HenriksHobbyLager.UI
             Console.Write("Namn: ");
             string name = Console.ReadLine();
 
+            decimal price;
+            while (true) { 
             Console.Write("Pris: ");
-            if (!decimal.TryParse(Console.ReadLine(), out var price))
-            {
-                Console.WriteLine("Felaktig inmatning för pris.");
-                return Task.CompletedTask;
+            if (decimal.TryParse(Console.ReadLine(), out price))
+                {
+                    break;
+                }
+                Console.WriteLine("Felaktig inmatning för pris. Försök igen!");
             }
 
-            Console.Write("Lagersaldo: ");
-            if (!int.TryParse(Console.ReadLine(), out var stock))
-            {
-                Console.WriteLine("Felaktig inmatning för lagersaldo.");
-                return Task.CompletedTask;
+            int stock;
+            while (true) 
+            { 
+                Console.Write("Lagersaldo: ");
+                if (int.TryParse(Console.ReadLine(), out stock))
+                {
+                    break;
+                }
+                Console.WriteLine("Felaktig inmatning för lagersaldo. Försök igen!");
             }
 
             Console.Write("Kategori: ");
