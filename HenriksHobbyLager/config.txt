@@ -1,6 +1,6 @@
 # Database type: SQL or NoSQL (MongoDB)
 
-type=NoSQL
+type=SQL
 
 # Connection string
 

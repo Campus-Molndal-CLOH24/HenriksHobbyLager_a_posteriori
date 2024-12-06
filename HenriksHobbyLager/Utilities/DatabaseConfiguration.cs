@@ -1,8 +1,10 @@
+using HenriksHobbyLager.Database;
 using HenriksHobbyLager.Database.Repositories;
 using HenriksHobbyLager.Interfaces;
 using HenriksHobbyLager.Models;
 using HenriksHobbyLager.Services;
 using HenriksHobbyLager.UI;
+using Microsoft.EntityFrameworkCore;
 
 namespace HenriksHobbyLager.Utilities
 {
@@ -16,8 +18,11 @@ namespace HenriksHobbyLager.Utilities
 
             if (dbType == "SQL")
             {
-                var sqliteDatabase = new SqliteProductRepository();
-                sqliteDatabase.Connect(connectionString);
+                var options = new DbContextOptionsBuilder<AppDbContext>()
+                    .UseSqlite(connectionString)
+                    .Options;
+
+                var sqliteDatabase = new SqliteProductRepository(new AppDbContext(options));
                 database = sqliteDatabase;
                 Console.WriteLine("Anslutning till SQLite lyckades.");
             }
