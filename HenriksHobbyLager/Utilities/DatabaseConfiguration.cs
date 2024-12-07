@@ -12,12 +12,13 @@ namespace HenriksHobbyLager.Utilities
     {
         public static void Initialize()
         {
-            // Läs konfiguration
+            // Läser konfiguration för att avgöra databasens typ och anslutningssträng
             var (dbType, connectionString) = ConfigReader.ReadConfig("config.txt");
             IRepository<Product> database;
 
             if (dbType == "SQL")
             {
+                // Konfigurerar SQLite-databasen med Entity Framework Core
                 var options = new DbContextOptionsBuilder<AppDbContext>()
                     .UseSqlite(connectionString)
                     .Options;
@@ -28,6 +29,7 @@ namespace HenriksHobbyLager.Utilities
             }
             else if (dbType == "NoSQL")
             {
+                // Konfigurerar MongoDB-databasen
                 var mongoDatabase = new MongoDbProductRepository();
                 mongoDatabase.Connect(connectionString);
                 database = mongoDatabase;
@@ -35,11 +37,14 @@ namespace HenriksHobbyLager.Utilities
             }
             else
             {
+                // Kastar ett undantag om databasens typ är okänd
                 throw new Exception($"Okänd databas typ: {dbType}");
             }
 
+            // Skapar ProductService som en mellanhand för databasen
             IProductService productService = new ProductService(database);
-            // Skicka databasens typ till ConsoleMenuHandler
+
+            // Skapar och startar ConsoleMenuHandler med vald databas
             var consoleMenuHandler = new ConsoleMenuHandler(productService, dbType);
             consoleMenuHandler.ShowMainMenu();
         }

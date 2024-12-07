@@ -2,13 +2,15 @@
 
 namespace HenriksHobbyLager.Interfaces
 {
-    public interface IProductService // Console Menu logik (affärslogik). Separerar Affärslogik från Datbaslogik,
+    public interface IProductService // Console Menu logik (affärslogik).
+                                     // Separerar Affärslogik från Datbaslogik,
 {
-        Task<IEnumerable<Product>> GetAllProducts();
-        void CreateProduct(Product product);
-        void UpdateProduct(Product product);
-        void DeleteProduct(int id);
-        Task<IEnumerable<Product>> SearchProducts(string searchTerm);
+        public void CreateProduct(Product product);
         Task<Product> GetProduct(int result);
+        Task<IEnumerable<Product>> GetAllProducts();
+        Task<IEnumerable<Product>> SearchProducts(string searchTerm);
+        void UpdateProduct(Product product);
+        public void DeleteProduct(int id);
     }
 }
+

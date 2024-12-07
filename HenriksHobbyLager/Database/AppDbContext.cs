@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 namespace HenriksHobbyLager.Database
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options)
-        : DbContext(options) // Entity Framework Core integration
+        : DbContext(options) // Initialiserar databaskontexten med Entity Framework Core och dess inställningar
     {
+        // Representerar tabellen "Products" i databasen
         public DbSet<Product> Products { get; set; }
     }
 }
