@@ -7,8 +7,8 @@
 
 ## Kodare
 
-- 
-- 
+- Otto
+- Måns 
 - 
 - 
 - 

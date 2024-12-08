@@ -1,4 +1,6 @@
 ﻿namespace HenriksHobbyLager.Interfaces
+
+
 {
     public interface IRepository<T> // Ansvarar för databaslogik och CRUD-operationer
     {

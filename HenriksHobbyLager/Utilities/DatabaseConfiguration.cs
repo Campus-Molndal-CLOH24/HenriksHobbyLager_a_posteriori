@@ -14,6 +14,9 @@ namespace HenriksHobbyLager.Utilities
         {
             // Läser konfiguration för att avgöra databasens typ och anslutningssträng
             var (dbType, connectionString) = ConfigReader.ReadConfig("config.txt");
+            
+            // Deklarerar en variabel som referens till en databasimplementation (SQLite eller MongoDB)
+            // För att hantera produkter i databasen via det gemensamma Interfacet IRepository.
             IRepository<Product> database;
 
             if (dbType == "SQL")
