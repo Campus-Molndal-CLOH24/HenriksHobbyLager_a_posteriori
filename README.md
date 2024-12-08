@@ -1,28 +1,5 @@
 # HenriksHobbyLager
 
-# Arbetsflöde
-
-## Branch-struktur
-- **temp/{namn}**: Börja alltid här. Används för utveckling och testning av kod.
-- **dev/{namn}**: Hit pushar ni kod som fungerar och är redo att integreras med resten.
-- **test**: Gemensam branch för integration och sista testning innan det går till main.
-- **dev/test**: Om vi behöver fixa något i test.
-- **main**: Produktionsklar och inlämningsfärdig kod.
-
-## Arbetsflöde
-1. Börja i din **temp/{namn}**.
-2. När koden fungerar, merge:a till **dev/{namn}**.
-3. Skapa en pull request från **dev/{namn}** till **test**.
-4. Kör gemensamma tester i **test**.
-5. Merge:a till **main** när allt är klart och testat.
-
-## Regler för pull requests
-- Beskriv vad ändringen gör.
----------
-
-#TODO
-
-README.md ska innehålla:
 1. Kort beskrivning av projektet
 
 Henrik bad om att få förbättrad kod och framförallt ett bättre sätt att lagra datan om sina produkter på. 
@@ -32,8 +9,7 @@ Efter detta fungerar Henriks meny i princip på samma sätt som när han sparade
 
 2. Installationsinstruktioner
 
-
-
+Öppna .zipfilen, hitta HenriksHobbyLager.csproj, öppna med din favorit-IDE. 
 
 3. Hur man kör programmet
 
